@@ -105,20 +105,11 @@ function xtag() { awk -F'[<|>]' '/<'$1'>/{print $3}' $2; }
 function md5() { md5sum<<<$1 | cut -f1 -d' '; }
 
 
-
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#export M2_HOME="/home/jk/Apps/maven/"
-#export PATH=$M2_HOME/bin:$PATH # add Maven to PATH
-#export EC2_HOME="/home/jk7/Apps/ec2-api-tools" # Amazon EC2 tools
-#export EC2_PRIVATE_KEY="~/.ec2/pk-JJENZX3IGNVWHALOVKCZ6OAXREO47HEY.pem"
-#export EC2_CERT="~/.ec2/cert-JJENZX3IGNVWHALOVKCZ6OAXREO47HEY.pem"
-#export EC2_URL=https://
+# PATH section
 export JAVA_HOME="/home/jk/Apps/jdk1.6.0_27/jre"
-export PATH=$EC2_HOME/bin:$PATH # add EC2 tools to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
 
 # enable rbenv 
 eval "$(rbenv init -)"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
