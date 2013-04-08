@@ -22,6 +22,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ## =============================================================================
 alias alt='sudo update-alternatives --config ' # quickly change between installed version of an application
 alias ba='vim ~/.bashrc'   # edit bashrc file
+alias vv='vim ~/.vimrc'    # edit vimrc file
 alias du='du -kh'          # Makes a more readable output.
 alias df='df -kTh'
 alias h='history'
