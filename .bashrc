@@ -49,6 +49,7 @@ alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
 alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
+alias ags='apt-cache search '   # search for avialable packages
 
 
 
