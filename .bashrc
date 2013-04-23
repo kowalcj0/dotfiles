@@ -48,9 +48,19 @@ alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
 alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
-alias ags='apt-cache search '   # search for avialable packages
+alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
-function pkgf() { dpkg -l \*${1}\*; } # similar to one above
+
+# $1 - package name you want to find
+function findPackageUsingAptAndDpkg() { 
+    echo "Searching for a package '${1}' using apt-cache:...
+*******************************************************";
+    apt-cache search ${1};
+
+    echo -e "\nSearching for a package '${1}' using dpkg:...
+*******************************************************";
+    dpkg -l \*${1}\*; 
+}
 
 
 ## =============================================================================
