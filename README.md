@@ -28,7 +28,7 @@ you need to create those absolute symlinks :)
 
 Load new Bash settings:
 ```bash
-    sourcre ~/.bashrc
+    source ~/.bashrc
 ```
 
 Once that done you can edit your cfg files as usual:
@@ -38,6 +38,6 @@ Once that done you can edit your cfg files as usual:
 ```
 
 or use handy aliases:
-ba for vim ~/.bashrc
-vv for vim ~/.vimrc
+* ba for vim ~/.bashrc
+* vv for vim ~/.vimrc
 
