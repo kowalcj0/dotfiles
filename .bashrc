@@ -44,13 +44,13 @@ alias lt='ls -ltr'         # sort by date, most recent last
 alias lm='ls -al |more'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
-alias pkgi='dpkg -s '      # nice info about the selected package
 alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
 alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
 alias ags='apt-cache search '   # search for avialable packages
-
+alias pkgi='dpkg -s '      # nice info about the selected package
+function pkgf() { dpkg -l \*${1}\*; } # similar to one above
 
 
 ## =============================================================================
@@ -64,7 +64,7 @@ export GIT_SSL_NO_VERIFY=true
 ## =============================================================================
 alias gp='git show --pretty="format:" --name-only ' # pretty print of files changes in given commit, ex.: gp commitID
 alias gb='git diff --stat-width=250 --stat-width=250 --stat-name-width=500 --color ' # diff branches by showing only modified files, usage: gb master..janusz or gb janusz..master
-alias gc='git checkout ' # a shortcut for checking out a branch 
+alias gc='git checkout ' # a shortcut for checking out a branch
 alias gl='git log -n ' # show a given number of commit comments, ex: gl 2
 alias gh='git diff HEAD' # use default diff tool to compare changes since HEAD
 alias gs='git status' # show the status
@@ -108,11 +108,13 @@ function xtag() { awk -F'[<|>]' '/<'$1'>/{print $3}' $2; }
 function md5() { md5sum<<<$1 | cut -f1 -d' '; }
 
 
-# PATH section
-export JAVA_HOME="/home/jk/Apps/jdk1.6.0_27/jre"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="/usr/local/heroku/bin:$PATH" # Added by the Heroku Toolbelt
+export JAVA_HOME=/usr
 
-# enable rbenv 
-eval "$(rbenv init -)"
-
+# Amazon EC2 settings
+#export EC2_HOME="/usr/lib/ec2/ec2-api-tools-1.6.6.4" # Amazon EC2 tools
+#export AWS_ACCESS_KEY=
+#export AWS_SECRET_KEY=
+#export EC2_PRIVATE_KEY="~/.ec2/pk-****.pem"
+#export EC2_CERT="~/.ec2/cert-****.pem"
+#export EC2_URL=https://ec2.amazonaws.com
+#export PATH=$PATH:$EC2_HOME/bin
