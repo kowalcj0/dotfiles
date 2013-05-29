@@ -7,16 +7,16 @@ My Bash and Vim config files. Maybe someone will find'em handy :)
 open the file and just a have a look at all the aliases
 
 ##.vimrc
-F2 - enables a paste mode that will keep the indendation intact
-F3 - launch file fuzzy search 
-F6 - toggle color-column after 80chars
-F7 - toggle line numbers
-F8 - toggle tag list
-F9 - toggle Matrix screen-saver
-F10 - toggle hex-editor
-F12 - Press F12 to toggle tab characters. Visual whitespace
-C-t up/down/left/right - navigate between tabs
-S - yank a text then use S to replace a word and paster many times
+F2 - enables a paste mode that will keep the indendation intact  
+F3 - launch file fuzzy search  
+F6 - toggle color-column after 80chars  
+F7 - toggle line numbers  
+F8 - toggle tag list  
+F9 - toggle Matrix screen-saver  
+F10 - toggle hex-editor  
+F12 - Press F12 to toggle tab characters. Visual whitespace  
+C-t up/down/left/right - navigate between tabs  
+S - yank a text then use S to replace a word and paster many times  
 
 
 ##.inputrc 
