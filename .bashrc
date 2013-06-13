@@ -16,6 +16,8 @@ shopt -s histappend                      # append to history, don't overwrite it
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 
+# changes the prompt to something like: root@medusa:/tmp 14:25:56 >
+export PS1='\[$(tput setaf 1)\]\u@\h:\w \t> \[$(tput sgr0)\]'
 
 ## =============================================================================
 ## handy aliases
@@ -117,6 +119,8 @@ function xtag() { awk -F'[<|>]' '/<'$1'>/{print $3}' $2; }
 # example 2: md5 singleWordExample
 function md5() { md5sum<<<$1 | cut -f1 -d' '; }
 
+# a fix for SSL issues with Pidgin
+export NSS_SSL_CBC_RANDOM_IV=0
 
 export JAVA_HOME=/usr
 
