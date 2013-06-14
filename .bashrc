@@ -52,6 +52,7 @@ alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
 alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
+alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() { 
