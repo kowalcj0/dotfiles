@@ -81,7 +81,8 @@ alias gp='git show --pretty="format:" --name-only ' # pretty print of files chan
 alias gb='git diff --stat-width=250 --stat-width=250 --stat-name-width=500 --color ' # diff branches by showing only modified files, usage: gb master..janusz or gb janusz..master
 alias gc='git checkout ' # a shortcut for checking out a branch
 alias gl='git log -n ' # show a given number of commit comments, ex: gl 2
-alias gh='git diff HEAD' # use default diff tool to compare changes since HEAD
+alias gh='git difftool HEAD' # use default diff tool to compare changes since HEAD
+# but first configure the difftool http://stackoverflow.com/a/3713865
 alias gs='git status' # show the status
 alias ge='git ls-files . --exclude-standard --others' #show all the non-tracked files
 alias gi='git ls-files . --ignored --exclude-standard --others' #show all the ignored files
