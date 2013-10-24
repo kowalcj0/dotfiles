@@ -45,6 +45,8 @@ alias lu='ls -ltur'        # sort by and show access time, most recent last
 alias lt='ls -ltr'         # sort by date, most recent last
 alias lm='ls -al |more'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
+alias h0='set +o history && echo "Bash history is turned off!!"' # turn off history
+alias h1='set -o history && echo "Bash history is turned on!!"' # turn off history
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
@@ -106,7 +108,7 @@ function ext() { find . -type f | perl -ne 'print $1 if m/\.([^.\/]+)$/' | sort 
 # simple way to convert a music file (mp3) to a mp4 video with static image
 # really useful for youtube
 # example: mp3tovidwithimg cover.jpeg music_track.mp3 output_vid.mp4
-function mp3tovidwithimg() { ffmpeg -loop_input -i $1 -i $2 -shortest -acodec copy $3; }
+function mp3tovidwithimg() { ffmpeg -threads 0 -loop 1 -shortest -f image2 -i $1 -i $2 -c:v libx264 -tune stillimage -acodec copy -strict experimental $3; }
 
 # decrypting pdf files
 function decrpdf() { gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$2 -c .setpdfwrite -f $1; }
