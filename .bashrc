@@ -15,7 +15,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-
 # changes the prompt to something like: root@medusa:/tmp 14:25:56 >
 export PS1='\[$(tput setaf 1)\]\u@\h:\w \t> \[$(tput sgr0)\]'
 
@@ -81,6 +80,7 @@ alias gp='git show --pretty="format:" --name-only ' # pretty print of files chan
 alias gb='git diff --stat-width=250 --stat-width=250 --stat-name-width=500 --color ' # diff branches by showing only modified files, usage: gb master..janusz or gb janusz..master
 alias gc='git checkout ' # a shortcut for checking out a branch
 alias gl='git log -n ' # show a given number of commit comments, ex: gl 2
+alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" # a nice representation of the commit tree
 alias gh='git difftool HEAD' # use default diff tool to compare changes since HEAD
 # but first configure the difftool http://stackoverflow.com/a/3713865
 alias gs='git status' # show the status
@@ -135,4 +135,8 @@ export JAVA_HOME=/usr
 #export EC2_PRIVATE_KEY="~/.ec2/pk-****.pem"
 #export EC2_CERT="~/.ec2/cert-****.pem"
 #export EC2_URL=https://ec2.amazonaws.com
-#export PATH=$PATH:$EC2_HOME/bin
+export PATH=$PATH:$HOME/bin
+# set 256 color for terminator
+# http://vim.wikia.com/wiki/256_colors_setup_for_console_Vim#Terminal_recap
+# http://askubuntu.com/a/14891
+export TERM="xterm-256color"

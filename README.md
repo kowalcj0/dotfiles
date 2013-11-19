@@ -43,11 +43,12 @@ Delete your old cfg files:
     rm ~/.inputrc
 ```
 
-Create new absolute symlinks for the new files:
+Create new absolute symlinks for all dot files and .vim folder:
 ```bash
     ln -sf ~/git/bash-that-vim/.bashrc ~/.bashrc
     ln -sf ~/git/bash-that-vim/.vimrc ~/.vimrc
     ln -sf ~/git/bash-that-vim/.inputrc ~/.inputrc
+    ln -sf $HOME/git/bash-that-vim/.vim ~/.vim
 ```
 This [answer](http://superuser.com/a/422477) on superuser.com to explains why 
 you need to create those absolute symlinks :)
