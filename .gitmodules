@@ -12,7 +12,7 @@
 	url = https://github.com/Lokaltog/vim-powerline.git
 [submodule ".vim/bundle/colorschemes"]
 	path = .vim/bundle/colorschemes
-	url = git@github.com:flazz/vim-colorschemes.git
+	url = https://github.com/flazz/vim-colorschemes.git
 [submodule ".vim/bundle/DoxygenToolkit"]
 	path = .vim/bundle/DoxygenToolkit
 	url = https://github.com/vim-scripts/DoxygenToolkit.vim.git
