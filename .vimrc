@@ -51,6 +51,11 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " Shortcuts
 "
 
+" folding using Space
+" found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
 " select lines with visual block and press 's' to sort them
 " usefull when sorting imports
 vnoremap <Leader>s :sort<CR>
