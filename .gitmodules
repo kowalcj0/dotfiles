@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/sessionman"]
 	path = .vim/bundle/sessionman
 	url = https://github.com/vim-scripts/sessionman.vim.git
+[submodule ".vim/bundle/puppet-syntax-vim"]
+	path = .vim/bundle/puppet-syntax-vim
+	url = https://github.com/puppetlabs/puppet-syntax-vim.git
