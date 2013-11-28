@@ -45,6 +45,13 @@ set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" use ctags tags file to go to definition
+" by typing Ctrl + ]
+" ps. remember to run ctags -R 
+" in the project's parent directory
+" http://stackoverflow.com/a/19926573
+set autochdir 
+set tags+=./tags;
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
