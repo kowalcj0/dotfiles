@@ -68,9 +68,10 @@ let g:vim_markdown_folding_disabled=1
 set nofoldenable
 
 
-" list of handy plugins
-" https://github.com/plasticboy/vim-markdown
-
+" Fix the issues with X11 clipboard
+" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+set clipboard=unnamedplus
+set showmode
 
 " easier moving of code block
 " select using visual block and then simply < or > to change indentation
@@ -139,9 +140,7 @@ nnoremap S diw"0P
 " 1) Start insert mode. 2) Press F2 (toggles the 'paste' option on).
 " 3) Use your terminal to paste text from the clipboard. 4) Press F2 (toggles the 'paste' option off).
 nnoremap <F2> :set invpaste paste?<CR>
-set clipboard=unnamedplus
 set pastetoggle=<F2>
-set showmode
 
 
 " Press F3 to launch file fuzzy search
