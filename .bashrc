@@ -47,6 +47,7 @@ alias lr='ls -lR'          # recursive ls
 alias h0='set +o history && echo "Bash history is turned off!!"' # turn off history
 alias h1='set -o history && echo "Bash history is turned on!!"' # turn off history
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
+alias port='lsof -Pnl +M -i4 | grep ' # find app that listens on given port
 alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
 alias agr='sudo apt-get remove --purge ' # shortcut for removing a package

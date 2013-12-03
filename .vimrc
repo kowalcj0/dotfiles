@@ -69,6 +69,10 @@ let g:pymode_run_key = 'R'
 " then press g
 " https://github.com/klen/python-mode/issues/150
 let g:pymode_rope_goto_def_newwin = "new"
+
+" useful shortcut to go to python definition
+" more on repo shortcuts https://github.com/peplin/ropevim
+map <C-c>g :call RopeGotoDefinition()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " end of python-mode settings
