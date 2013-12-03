@@ -31,9 +31,6 @@ set ignorecase smartcase
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set shell=bash
-filetype off
-filetype plugin indent on
-syntax on
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
 " use emacs-style tab completion when selecting files, etc
@@ -45,11 +42,48 @@ set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" use ctags tags file to go to definition
+" by typing Ctrl + ]
+" ps. remember to run ctags -R 
+" in the project's parent directory
+" http://stackoverflow.com/a/19926573
+set autochdir 
+set tags+=./tags;
+
+" define the Leader key
+" handy with new shortcuts
+let mapleader=","
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python-mode settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable pylint checking every save
+let g:pymode_lint_write = 0
+"
+" Set key 'R' for run python code
+let g:pymode_run_key = 'R'
+"
+" Open definition in a new window
+" ps. definition can be opened with <C-C>g
+" which means press and realese: Ctrl+Shift+c 
+" then press g
+" https://github.com/klen/python-mode/issues/150
+let g:pymode_rope_goto_def_newwin = "new"
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" end of python-mode settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
 "
+
+" folding using Space
+" found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 " select lines with visual block and press 's' to sort them
 " usefull when sorting imports
@@ -85,13 +119,19 @@ vnoremap > >gv " better indentation
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " au InsertLeave * match ExtraWhitespace /\s\+$/
 
+" Pathogen load
+" https://github.com/klen/python-mode#id6
+filetype off
 
 " Setup Pathogen to manage your plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
 " curl -so ~/.vim/autoload https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name folder
 call pathogen#infect()
+call pathogen#helptags()
 
+filetype plugin indent on
+syntax on
 
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
@@ -117,8 +157,9 @@ set showmatch  "Show matching bracets when text indicator is over them
 map <silent> cp "_cw<C-R>"<Esc>
 
 "line and column highlight
+"press / c to toggle the highlight
 :set cursorline cursorcolumn
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR> "press / c to toggle the highlight
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
@@ -141,10 +182,6 @@ nnoremap S diw"0P
 " 3) Use your terminal to paste text from the clipboard. 4) Press F2 (toggles the 'paste' option off).
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-
-
-" Press F3 to launch file fuzzy search
-nmap <F3> :FufCoverageFile<CR> 
 
 
 " Press F5 to remove unwanted trailing whitespaces in the whole file
@@ -242,5 +279,3 @@ function! VisualSearch(direction) range
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction
-
-

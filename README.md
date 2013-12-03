@@ -29,6 +29,17 @@ Thaks to Jude Robinson @ https://coderwall.com/p/oqtj8w
 
 ## Installation notes
 
+Clone repo:
+```bash
+    git clone https://github.com/kowalcj0/bash-that-vim.git
+```
+
+Initialize all the submodules:
+```bash
+    git submodule init
+    git submodule update
+```
+
 Create a backup copy of your current cfg files:
 ```bash
     cp ~/.bashrc ~/.bashrc.bak
@@ -48,7 +59,7 @@ Create new absolute symlinks for all dot files and .vim folder:
     ln -sf ~/git/bash-that-vim/.bashrc ~/.bashrc
     ln -sf ~/git/bash-that-vim/.vimrc ~/.vimrc
     ln -sf ~/git/bash-that-vim/.inputrc ~/.inputrc
-    ln -sf $HOME/git/bash-that-vim/.vim ~/.vim
+    ln -sf ~/git/bash-that-vim/.vim ~/.vim
 ```
 This [answer](http://superuser.com/a/422477) on superuser.com to explains why 
 you need to create those absolute symlinks :)
