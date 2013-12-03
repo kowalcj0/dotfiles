@@ -173,6 +173,12 @@ map <C-t><right> :tabn<cr> " tabnext - press ctrl+t then right arrow
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
 
+" Remap CtrlP.vim keys config to open files aleays in a new tab
+" https://github.com/kien/ctrlp.vim/issues/160
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 
 """"""""""""""""""""""""""""""
 " => F-keys mappings
