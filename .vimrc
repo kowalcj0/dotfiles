@@ -69,6 +69,10 @@ let g:pymode_run_key = 'R'
 " then press g
 " https://github.com/klen/python-mode/issues/150
 let g:pymode_rope_goto_def_newwin = "new"
+
+" useful shortcut to go to python definition
+" more on repo shortcuts https://github.com/peplin/ropevim
+map <C-c>g :call RopeGotoDefinition()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " end of python-mode settings
@@ -102,9 +106,10 @@ let g:vim_markdown_folding_disabled=1
 set nofoldenable
 
 
-" list of handy plugins
-" https://github.com/plasticboy/vim-markdown
-
+" Fix the issues with X11 clipboard
+" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+set clipboard=unnamedplus
+set showmode
 
 " easier moving of code block
 " select using visual block and then simply < or > to change indentation
@@ -172,6 +177,12 @@ map <C-t><right> :tabn<cr> " tabnext - press ctrl+t then right arrow
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
 
+" Remap CtrlP.vim keys config to open files aleays in a new tab
+" https://github.com/kien/ctrlp.vim/issues/160
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 
 """"""""""""""""""""""""""""""
 " => F-keys mappings
@@ -180,9 +191,7 @@ nnoremap S diw"0P
 " 1) Start insert mode. 2) Press F2 (toggles the 'paste' option on).
 " 3) Use your terminal to paste text from the clipboard. 4) Press F2 (toggles the 'paste' option off).
 nnoremap <F2> :set invpaste paste?<CR>
-set clipboard=unnamedplus
 set pastetoggle=<F2>
-set showmode
 
 
 " Press F5 to remove unwanted trailing whitespaces in the whole file
