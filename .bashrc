@@ -32,6 +32,7 @@ alias j='jobs -l'
 alias f='find . -iname '
 alias which='type -a'
 alias ..='cd ..'
+alias ct="ctags --exclude=.git --exclude='*.log' --exclude='*.pyc' --exclude=.ropeproject -R *"
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias ll='ls -Al --group-directories-first'
@@ -99,7 +100,7 @@ function gitBranchDiffFile() {
 
 # to grep through all the files found by find in the current dir, 
 # Usage: g pattern
-function g() { find . -type f -print0 | xargs -0 grep --colour=auto "${1}" ; }
+function g() { find . -type f ! -iname "*.pyc" ! -iname ".git" ! -iname "tags" ! -iname ".ropeproject" -print0 | xargs -0 grep --colour=auto "${1}" ; }
 
 # find all of the distinct file extensions in a folder
 # http://stackoverflow.com/questions/1842254/how-can-i-find-all-of-the-distinct-file-extensions-in-a-folder-hierarchy
