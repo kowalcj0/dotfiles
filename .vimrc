@@ -182,14 +182,15 @@ hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
 " navigating between tabs
-map <C-t><up> :tabr<cr> " jump to first tab - press ctrl+t then up arrow
-map <C-t><down> :tabl<cr> " jump to last tab - press ctrl+t then down arrow
-map <C-t><left> :tabp<cr> " tabprevious - press ctrl+t then left arrow
-map <C-t><right> :tabn<cr> " tabnext - press ctrl+t then right arrow
+map <C-t><up> :tabr<cr>     " jump to first tab - press ctrl+t then up arrow
+map <C-t><down> :tabl<cr>   " jump to last tab - press ctrl+t then down arrow
+map <C-t><left> :tabp<cr>   " tabprevious - press ctrl+t then left arrow
+map <C-t><right> :tabn<cr>  " tabnext - press ctrl+t then right arrow
 
 
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
+
 
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
@@ -197,6 +198,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+" CtrlP - Exclude files or directories using Vim's wildignore:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/.git/*,*~,*.db,.DS_Store,*.jar
+
 
 """"""""""""""""""""""""""""""
 " => F-keys mappings
