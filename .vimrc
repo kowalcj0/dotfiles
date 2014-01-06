@@ -44,10 +44,10 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " use ctags tags file to go to definition
 " by typing Ctrl + ]
-" ps. remember to run ctags -R 
+" ps. remember to run ctags -R
 " in the project's parent directory
 " http://stackoverflow.com/a/19926573
-set autochdir 
+set autochdir
 set tags+=./tags;
 
 " define the Leader key
@@ -65,7 +65,7 @@ let g:pymode_run_key = 'R'
 "
 " Open definition in a new window
 " ps. definition can be opened with <C-C>g
-" which means press and realese: Ctrl+Shift+c 
+" which means press and realese: Ctrl+Shift+c
 " then press g
 " https://github.com/klen/python-mode/issues/150
 let g:pymode_rope_goto_def_newwin = "new"
@@ -84,13 +84,27 @@ map <C-c>g :call RopeGotoDefinition()
 " Shortcuts
 "
 
+" enable built-in spell checker
+" ;s to use regular dictionary
+nmap ;s :set invspell spelllang=en<CR>
+
+
+" draging visual block using arrows
+" http://www.youtube.com/watch?v=aHm36-na4-4
+vmap <expr> h DVB_Drag('left')
+vmap <expr> l DVB_Drag('right')
+vmap <expr> j DVB_Drag('down')
+vmap <expr> j DVB_Drag('up')
+vmap <expr> D DVB_Duplicate()
+
+
 " folding using Space
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " select lines with visual block and press 's' to sort them
-" usefull when sorting imports
+" useful when sorting imports
 vnoremap <Leader>s :sort<CR>
 
 
@@ -168,14 +182,15 @@ hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
 " navigating between tabs
-map <C-t><up> :tabr<cr> " jump to first tab - press ctrl+t then up arrow
-map <C-t><down> :tabl<cr> " jump to last tab - press ctrl+t then down arrow
-map <C-t><left> :tabp<cr> " tabprevious - press ctrl+t then left arrow
-map <C-t><right> :tabn<cr> " tabnext - press ctrl+t then right arrow
+map <C-t><up> :tabr<cr>     " jump to first tab - press ctrl+t then up arrow
+map <C-t><down> :tabl<cr>   " jump to last tab - press ctrl+t then down arrow
+map <C-t><left> :tabp<cr>   " tabprevious - press ctrl+t then left arrow
+map <C-t><right> :tabn<cr>  " tabnext - press ctrl+t then right arrow
 
 
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
+
 
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
@@ -183,6 +198,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+" CtrlP - Exclude files or directories using Vim's wildignore:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/.git/*,*~,*.db,.DS_Store,*.jar
+
 
 """"""""""""""""""""""""""""""
 " => F-keys mappings
@@ -203,7 +221,7 @@ nnoremap <silent><F6> :call <SID>ToggleColorColumn()<cr>
 " toggle colored right border after 80 chars
 set colorcolumn=80
 set tw=79       " width of document (used by gd)
-set nowrap      " don't automaticall wrap on load
+set nowrap      " don't automatically wrap on load
 set fo-=t       " don't automatically wrap text when typing
 let s:color_column_old = 0
 function! s:ToggleColorColumn()
@@ -247,9 +265,13 @@ function! HexMe()
     endif
 endfunction
 
-
+" define custom whitespace characters
+" ~ - for non breaking space (U+00A0)
+" »» - for tab
+" ¶ - for trailing spaces
+exec "set listchars=tab:\uBB\uBB,trail:\uB6,nbsp:~"
 " Press F12 to toggle tab characters. Visual whitespace
-nmap <F12> :set list! list?<CR> 
+nmap <F12> :set list! list?<CR>
 
 
 """"""""""""""""""""""""""""""
