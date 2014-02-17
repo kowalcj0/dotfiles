@@ -142,3 +142,5 @@ export PATH=$PATH:$HOME/bin
 # http://vim.wikia.com/wiki/256_colors_setup_for_console_Vim#Terminal_recap
 # http://askubuntu.com/a/14891
 export TERM="xterm-256color"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
