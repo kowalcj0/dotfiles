@@ -35,6 +35,7 @@ alias ..='cd ..'
 alias ct="ctags --exclude=.git --exclude='*.log' --exclude='*.pyc' --exclude=.ropeproject -R *"
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+alias s2u="rename 'y/ /_/' *" # replace spaces in filenames with underscores
 alias ll='ls -Al --group-directories-first'
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias la='ls -Al'          # show hidden files
@@ -66,6 +67,20 @@ function findPackageUsingAptAndDpkg() {
     echo -e "\nSearching for a package '${1}' using dpkg:...
 *******************************************************";
     dpkg -l \*${1}\*; 
+}
+
+
+# simple netcat based command that will do a port scan of a given ip range
+# it this simpliest form it will scan only last octet of the ip range
+# usage:
+#    portscaniprange "192.268.0" 22
+# http://www.commandlinefu.com/commands/view/3626/port-scan-a-range-of-hosts-with-netcat.
+function portscaniprange() {
+    local iprange="${1}"
+    local port="${2}"
+    for i in {43..43}; do
+        nc -v -n -z -w 1 ${iprange}.$i ${port}; 
+    done
 }
 
 
