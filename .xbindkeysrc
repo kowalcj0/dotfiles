@@ -17,7 +17,7 @@
 #       associated key
 #
 #
-# A list of keys is in /usr/include/X11/keysym.h and in
+### A list of keys is in /usr/include/X11/keysym.h and in
 # /usr/include/X11/keysymdef.h
 # The XK_ is not needed.
 #
@@ -51,20 +51,21 @@
   #control + b:2
 
 
+# Map "Menu" or "Applications" key on the MS Sculpt keyboard as a "Fn" key
 
-# show all windows: Scale
-"xte 'keydown Control_L' 'keydown Alt_L' 'key Down' 'keyup Control_L' 'keyup Alt_L'"
-  b:10 + release
 
+# show all windows: Scale - with Logitech Performance MX mouse
+#"xte 'keydown Control_L' 'keydown Alt_L' 'key Down' 'keyup Control_L' 'keyup Alt_L'"
+  #b:10 + release
 
 # Zooming with Logitech Performance MX mouse
 # thx to: http://www.ralf-oechsner.de/opensource/page/logitech_performance_mx
 # Press 'zoom' button and scroll up/down to zoom in/out
 # then press the 'zoom' button again to exit from the 'zoom' mode
-"xte 'keydown Control_L' &"
-   b:13
-"xte 'keyup Control_L' &"
-   Control + b:13
+#"xte 'keydown Control_L' &"
+   #b:13
+#"xte 'keyup Control_L' &"
+   #Control + b:13
 
 #"xterm -geom 50x20+20+20"
 #   Shift+Mod2+alt + s
