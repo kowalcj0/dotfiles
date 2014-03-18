@@ -81,3 +81,24 @@ or use handy aliases:
 * ba for vim ~/.bashrc
 * vv for vim ~/.vimrc
 
+
+## Other tips & tricks
+
+### Sync Tomboy Notes using Dropbox
+1. create new folder in the Dropbox folder ie.: tomboy-notes
+2. go to Tomboy'd preferences: Edit -> Preferences -> Synchronisation
+3. Choose "Local folder" from the "Service" dropdown menu
+4. Then point at the folder you've created in the first step
+5. Hit "Close" and continue working :)
+
+
+### Sync Tasque's DB using Dropbox
+1. close tasque
+2.  create new folder in the Dropbox folder ie.: tasque-db
+3.  move contents of ~/.config/tasque folder to the newly created tasque-db dir
+4.  delete the empty ~/.config/tasque
+5.  create a symlink:
+
+        ln -s /home/your_user_name/Dropbox/tasque-db tasque
+
+6.  open tasque
