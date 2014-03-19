@@ -31,6 +31,7 @@ alias h='history'
 alias j='jobs -l'
 alias f='find . -iname '
 alias which='type -a'
+alias scan='sudo clamscan -r / --bell --quiet --infected --exclude-dir=/sys --exclude-dir=/dev --exclude-dir=/proc --exclude=.vmdk --exclude=.flac --exclude=.nef'
 alias ..='cd ..'
 alias ct="ctags --exclude=.git --exclude='*.log' --exclude='*.pyc' --exclude=.ropeproject -R *"
 alias path='echo -e ${PATH//:/\\n}'
