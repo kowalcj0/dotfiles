@@ -106,7 +106,7 @@ alias ge='git ls-files . --exclude-standard --others' #show all the non-tracked 
 alias gi='git ls-files . --ignored --exclude-standard --others' #show all the ignored files
 alias go='git log origin/master..master' # list commits not pushed to the origin
 alias gk='gitk --all' # view full version tree in gitk
-alias gd=gitBranchDiffFile;
+alias gd=gitBranchDiffFile; # compare file between branches
 
 # $1 first branch
 # $2 second branch
@@ -158,7 +158,3 @@ export PATH=$PATH:$HOME/bin
 # http://vim.wikia.com/wiki/256_colors_setup_for_console_Vim#Terminal_recap
 # http://askubuntu.com/a/14891
 export TERM="xterm-256color"
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"

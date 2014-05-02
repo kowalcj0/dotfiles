@@ -24,5 +24,3 @@ fi
 # do not ignore special characters in foldernames
 # http://askubuntu.com/questions/115741/how-do-i-force-folder-view-sort-order-to-not-ignore-special-characters
 export LC_COLLATE=C
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
