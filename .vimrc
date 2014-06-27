@@ -175,7 +175,7 @@ set showmatch  "Show matching bracets when text indicator is over them
 map <silent> cp "_cw<C-R>"<Esc>
 
 "line and column highlight
-"press / c to toggle the highlight
+"press ,+c to toggle the highlight
 :set cursorline cursorcolumn
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white

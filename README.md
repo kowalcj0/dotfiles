@@ -82,6 +82,39 @@ or use handy aliases:
 * vv for vim ~/.vimrc
 
 
+## Shortcut tutorials
+
+* F2 paste code and keep formatting  
+![alt text](./docs/F2-paste_with_formatting.gif "Paste code and keep formatting")
+* F5 remove all trailing whitespaces  
+![alt text](./docs/F5-remove_all_trailing_whitespaces_-_and_F12_show_all_whitespaces.gif "Remove all trailing whitespaces")
+* F6 toggle 80 chars vertical line  
+![alt text](./docs/F6-toggle-80_chars_code_line_warning.gif "")
+* F7 toggle line numbering  
+![alt text](./docs/F7-toggle_line_numbering.gif "")
+* F8 toggle tag lists (require cTags)  
+![alt text](./docs/F8-toggle_tag_list.gif "")
+* F10 toggle hex view  
+![alt text](./docs/F10-toggle-hex-editor.gif "")
+* F12 toggle visual whitespaces  
+![alt text](./docs/F12-toggle-visual_whitespaces.gif "")
+* press Asterisk to do a visual search  
+![alt text](./docs/Asterisk-visual_search.gif "")
+* ctrl+t+arrows move around tabs  
+![alt text](./docs/Ctrl+T+arrows-move_around_tabs.gif "")
+* :Dox generate doc template  
+![alt text](./docs/Doxygen_plugin.gif "")
+* R run python script from Vim  
+![alt text](./docs/R-run-standalone_python-script.gif "")
+* play with EN spellcheker  
+![alt text](./docs/spell_checker.gif "")
+* ,+c toggle line and column highlight  
+![alt text](./docs/comma+c-toggle_line_and_column_highlight.gif "")
+* iyw then S to replace word multiple time  
+![alt text](./docs/iyw_then_S-to_replace_words_multiple_times.gif "")
+* move visual block with angle brackets  
+![alt text](./docs/moving_a_visual_block_indentation_with_angle_brackets.gif "")
+
 ## Other tips & tricks
 
 ### Sync Tomboy Notes using Dropbox
