@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/dragvisuals.vim"]
 	path = .vim/bundle/dragvisuals.vim
 	url = https://github.com/kowalcj0/vim-dragvisuals.git
+[submodule "3rdParty/soundcloud-dl"]
+	path = 3rdParty/soundcloud-dl
+	url = git@github.com:lukapusic/soundcloud-dl.git

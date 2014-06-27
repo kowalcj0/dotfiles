@@ -3,6 +3,11 @@
 [[ $- == *i* ]] || return
 
 
+###############################################################################
+# 3rd party scripts
+###############################################################################
+export PATH="$PATH:./3rdParty/soundcloud-dl" #sound cloud downloader
+
 
 ## =============================================================================
 ## Bash history related cfg
@@ -69,6 +74,13 @@ function findPackageUsingAptAndDpkg() {
 *******************************************************";
     dpkg -l \*${1}\*; 
 }
+
+
+# rename image files based on exif data
+# will move files to separate folders and rename files
+# usage:
+# rnbyexif *.jpg
+alias rnbyexif='exiftool -r -d %Y-%m-%d/%Y%m%d-%H%M%S_%%f.%%le "-filename<createdate" '
 
 
 # simple netcat based command that will do a port scan of a given ip range
