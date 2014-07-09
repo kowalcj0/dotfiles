@@ -38,6 +38,7 @@ alias f='find . -iname '
 alias which='type -a'
 alias scan='sudo clamscan -r / --bell --quiet --infected --exclude-dir=/sys --exclude-dir=/dev --exclude-dir=/proc --exclude=.vmdk --exclude=.flac --exclude=.nef'
 alias ..='cd ..'
+alias .='cd .. && cd -' # goes one level up and re-enters the last directory. Usueful with RVM etc
 alias ct="ctags --exclude=.git --exclude='*.log' --exclude='*.pyc' --exclude=.ropeproject -R *"
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
@@ -170,3 +171,6 @@ export PATH=$PATH:$HOME/bin
 # http://vim.wikia.com/wiki/256_colors_setup_for_console_Vim#Terminal_recap
 # http://askubuntu.com/a/14891
 export TERM="xterm-256color"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
