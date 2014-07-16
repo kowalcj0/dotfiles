@@ -20,8 +20,15 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# changes the prompt to something like: root@medusa:/tmp 14:25:56 >
-export PS1='\[$(tput setaf 1)\]\u@\h:\w \t> \[$(tput sgr0)\]'
+# Load prompt (PS1) definition from prompt.sh
+# to do it, we need the real location of the .bashrc script
+# which in our case is inside this repo
+# this script will show:
+# - current git branch
+# - "!" mark after branch name if code diverged from HEAD
+# - current version of ruby if rvm is used
+DIR="$(dirname $(readlink -m "$BASH_SOURCE"))"
+source ${DIR}/prompt.sh
 
 ## =============================================================================
 ## handy aliases
@@ -173,4 +180,5 @@ export PATH=$PATH:$HOME/bin
 export TERM="xterm-256color"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
