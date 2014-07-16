@@ -1,0 +1,26 @@
+this is only a placeholder for all the applications I usually install on a new
+machine.
+
+curl
+keymon
+git
+ctags
+exiftool
+xbindkeys
+keepass2
+python-pip
+python-virtualenv
+sudo pip install virtualenvwrapper
+sudo apt-get install terminator && sudo apt-get remove gnome-terminal && sudo ln /usr/bin/terminator /usr/bin/gnome-terminal
+pidgin
+finch
+vim -> sudo apt-get install mercurial python-dev ruby ruby-dev libx11-dev libxt-dev libgtk2.0-dev  libncurses5  ncurses-dev
+pidgin sipe -> sudo apt-get install intltool libxml2-dev libnspr4-dev libnss3-dev libgstreamer0.10-dev libnice-dev libpurple-dev libnss3-dev libglib2.0-dev 
+
+\curl -sSL https://get.rvm.io | bash -s stable
+sudo add-apt-repository ppa:noobslab/icons
+sudo apt-get install flattastic-suite
+sudo apt-get install vimix-flat-themes
+sudo apt-add-repository ppa:numix/ppa
+sudo apt-get install numix-icon-theme numix-icon-theme-circle
+

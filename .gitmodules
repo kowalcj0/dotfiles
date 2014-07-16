@@ -18,7 +18,7 @@
 	url = https://github.com/sudar/comments.vim.git
 [submodule ".vim/bundle/taglist"]
 	path = .vim/bundle/taglist
-	url = https://github.com/vim-scripts/taglist.vim.git
+    url = git@github.com:kowalcj0/taglist.vim.git
 [submodule ".vim/bundle/sessionman"]
 	path = .vim/bundle/sessionman
 	url = https://github.com/vim-scripts/sessionman.vim.git
@@ -34,9 +34,6 @@
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".vim/bundle/dragvisuals.vim"]
-	path = .vim/bundle/dragvisuals.vim
-	url = https://github.com/kowalcj0/vim-dragvisuals.git
 [submodule "3rdParty/soundcloud-dl"]
 	path = 3rdParty/soundcloud-dl
 	url = git@github.com:lukapusic/soundcloud-dl.git
