@@ -89,15 +89,6 @@ map <C-c>g :call RopeGotoDefinition()
 nmap ;s :set invspell spelllang=en<CR>
 
 
-" draging visual block using arrows
-" http://www.youtube.com/watch?v=aHm36-na4-4
-vmap <expr> h DVB_Drag('left')
-vmap <expr> l DVB_Drag('right')
-vmap <expr> j DVB_Drag('down')
-vmap <expr> j DVB_Drag('up')
-vmap <expr> D DVB_Duplicate()
-
-
 " folding using Space
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
