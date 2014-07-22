@@ -37,3 +37,6 @@
 [submodule "3rdParty/soundcloud-dl"]
 	path = 3rdParty/soundcloud-dl
 	url = git@github.com:lukapusic/soundcloud-dl.git
+[submodule ".vim/bundle/jedi-vim"]
+	path = .vim/bundle/jedi-vim
+	url = git@github.com:davidhalter/jedi-vim.git
