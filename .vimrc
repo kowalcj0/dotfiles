@@ -54,30 +54,6 @@ set tags+=./tags;
 " handy with new shortcuts
 let mapleader=","
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python-mode settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable pylint checking every save
-let g:pymode_lint_write = 0
-"
-" Set key 'R' for run python code
-let g:pymode_run_key = 'R'
-"
-" Open definition in a new window
-" ps. definition can be opened with <C-C>g
-" which means press and realese: Ctrl+Shift+c
-" then press g
-" https://github.com/klen/python-mode/issues/150
-let g:pymode_rope_goto_def_newwin = "new"
-
-" useful shortcut to go to python definition
-" more on repo shortcuts https://github.com/peplin/ropevim
-map <C-c>g :call RopeGotoDefinition()
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" end of python-mode settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,6 +118,14 @@ call pathogen#helptags()
 filetype plugin indent on
 syntax on
 
+" syntastic
+" this will allow you to jump between error using [l and ]l
+" https://github.com/scrooloose/syntastic/issues/341#issuecomment-22071333
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open=1 " run the syntax check on file open
+let g:syntastic_enable_signs=1
+
+
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
@@ -150,9 +134,9 @@ set t_Co=256
 color miko
 
 " Settings for Vim-powerline
-" cd ~/.vim/bundle
-" git clone https://github.com/Lokaltog/vim-powerline.git
 set laststatus=2
+let g:Powerline_symbols = 'fancy'
+
 
 "SCALA syntax highlight script
 "http://stackoverflow.com/questions/3626203/text-editor-for-scala/3627461#3627461
@@ -264,6 +248,11 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB6,nbsp:~"
 " Press F12 to toggle tab characters. Visual whitespace
 nmap <F12> :set list! list?<CR>
 
+
+"jedi - > copied from cliffxuan
+let g:jedi#use_tabs_not_buffers = 1
+" no docstring window popup during completion
+autocmd FileType python setlocal completeopt-=preview
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
