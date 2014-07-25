@@ -65,6 +65,10 @@ let mapleader=","
 nmap ;s :set invspell spelllang=en<CR>
 
 
+" Open file explorer in a new Tab
+nnoremap <leader>e :Texplore<CR>
+
+
 " folding using Space
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
