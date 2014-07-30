@@ -175,6 +175,8 @@ nnoremap <C-H> <C-W><C-H>
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
 
+" leader + space to clear the search results highlighting
+map <Leader><Space> :noh<CR>; 
 
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
