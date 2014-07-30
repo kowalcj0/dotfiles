@@ -166,6 +166,11 @@ map <C-t><down> :tabl<cr>   " jump to last tab - press ctrl+t then down arrow
 map <C-t><left> :tabp<cr>   " tabprevious - press ctrl+t then left arrow
 map <C-t><right> :tabn<cr>  " tabnext - press ctrl+t then right arrow
 
+" navigating between splits using Ctrl+hjkl
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
