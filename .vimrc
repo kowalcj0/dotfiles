@@ -33,10 +33,6 @@ set backspace=indent,eol,start
 set shell=bash
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
-" use emacs-style tab completion when selecting files, etc
-set wildmode=longest,list
-" make tab completion for files/buffers act like bash
-set wildmenu
 " Store temporary files in a central spot
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -66,7 +62,9 @@ nmap ;s :set invspell spelllang=en<CR>
 
 
 " Open file explorer in a new Tab
-nnoremap <leader>e :Texplore<CR>
+nnoremap <leader>E :Texplore<CR>
+" Open file explorer in the same window or split
+nnoremap <leader>e :Explore<CR>
 
 
 " folding using Space
@@ -129,7 +127,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open=1 " run the syntax check on file open
 let g:syntastic_enable_signs=1
 
-
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
@@ -150,6 +147,23 @@ filetype indent on " needed by scala syntax highligtning script
 set showmatch  "Show matching bracets when text indicator is over them
 
 
+" Wildmenu completion
+" make tab completion for files/buffers act like bash
+set wildmenu
+" use emacs-style tab completion when selecting files, etc
+set wildmode=list:longest,full
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=migrations                       " Django migrations
+set wildignore+=*.pyc,*.pyo,*pyd                 " Python byte code
+set wildignore+=*.orig                           " Merge resolution files}
+
 "change paste - will replace word with pasted word
 map <silent> cp "_cw<C-R>"<Esc>
 
@@ -161,10 +175,14 @@ hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
 " navigating between tabs
-map <C-t><up> :tabr<cr>     " jump to first tab - press ctrl+t then up arrow
-map <C-t><down> :tabl<cr>   " jump to last tab - press ctrl+t then down arrow
-map <C-t><left> :tabp<cr>   " tabprevious - press ctrl+t then left arrow
-map <C-t><right> :tabn<cr>  " tabnext - press ctrl+t then right arrow
+map <C-t><up> :tabr<cr>     " jump to first tab - press ctrl+t+up arrow
+map <C-t><down> :tabl<cr>   " jump to last tab - press ctrl+t+down arrow
+map <C-t><left> :tabp<cr>   " tabprevious - press ctrl+t+left arrow
+map <C-t><right> :tabn<cr>  " tabnext - press ctrl+t+right arrow
+map <C-t>h :tabp<cr>        " tabprevious - press ctrl+t+h
+map <C-t>l :tabn<cr>        " tabnext - press ctrl+t+l
+map <C-t>k :tabr<cr>        " jump to first tab - press ctrl+t+k
+map <C-t>j :tabl<cr>        " jump to last tab - press ctrl+t+j
 
 " navigating between splits using Ctrl+hjkl
 nnoremap <C-J> <C-W><C-J>
@@ -172,11 +190,28 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Open splits in various ways
+noremap <leader>v :vsp<CR>
+noremap <leader>ev :Vexplore<CR>
+noremap <leader>en :vnew<CR>
+
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
 
 " leader + space to clear the search results highlighting
 map <Leader><Space> :noh<CR>; 
+
+" Typos
+command! -bang E e<bang>
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
+
 
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
@@ -265,40 +300,38 @@ let g:jedi#use_tabs_not_buffers = 1
 " no docstring window popup during completion
 autocmd FileType python setlocal completeopt-=preview
 
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Really useful!
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+" Search for the selection under the cursor using * or # 
+" idea by Michael Naumann
+" http://amix.dk/blog/post/19334
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction
+endfunction 
 
-" From an idea by Michael Naumann
 function! VisualSearch(direction) range
-  let l:saved_reg = @"
-  execute "normal! vgvy"
+    let l:saved_reg = @"
+    execute "normal! vgvy"
 
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-  if a:direction == 'b'
-  execute "normal ?" . l:pattern . "^M"
-  elseif a:direction == 'gv'
-  call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-  elseif a:direction == 'f'
-  execute "normal /" . l:pattern . "^M"
-  endif
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
 
-  let @/ = l:pattern
-  let @" = l:saved_reg
+    let @/ = l:pattern
+    let @" = l:saved_reg
 endfunction
+
+" In visual mode when you press * or # to search for the current selection
+" How to use these maps:
+" While in visual mode:
+" press '*' to search (forwards) for the current selection
+" press '#' to search (backwards) for the current selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
