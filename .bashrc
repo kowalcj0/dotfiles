@@ -179,6 +179,11 @@ export PATH=$PATH:$HOME/bin
 # http://askubuntu.com/a/14891
 export TERM="xterm-256color"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
+
+#rvm
+if [[ -d $HOME/.rvm ]]
+then
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
