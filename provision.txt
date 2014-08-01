@@ -24,3 +24,32 @@ sudo apt-get install vimix-flat-themes
 sudo apt-add-repository ppa:numix/ppa
 sudo apt-get install numix-icon-theme numix-icon-theme-circle
 
+sbackup
+safecopy
+dupeguru-me
+keymon
+p11-kit
+pkcs11
+libnss3-tools
+thunderbird
+hg
+mercurial
+curl
+wget
+python-pip
+python-virtualenv
+python-virtualenvwrapper
+ctags
+darktable
+tree
+gitk
+
+" openshot related
+openshot
+frei0r-plugins
+libx264-142
+lame
+
+htop
+chromium-codecs-ffmpeg-extra
+hardinfo
