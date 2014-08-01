@@ -42,6 +42,7 @@ alias df='df -kTh'
 alias h='history'
 alias j='jobs -l'
 alias f='find . -iname '
+alias o='xdg-open'         # open selected file with an associated application
 alias which='type -a'
 alias scan='sudo clamscan -r / --bell --quiet --infected --exclude-dir=/sys --exclude-dir=/dev --exclude-dir=/proc --exclude=.vmdk --exclude=.flac --exclude=.nef'
 alias ..='cd ..'
