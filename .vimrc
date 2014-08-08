@@ -265,6 +265,7 @@ endfunction
 
 
 " Press F7 to toggle line numbering
+set relativenumber
 set number
 set numberwidth=4
 highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
