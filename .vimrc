@@ -221,6 +221,7 @@ let g:ctrlp_prompt_mappings = {
     \ }
 " CtrlP - Exclude files or directories using Vim's wildignore:
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/.git/*,*~,*.db,.DS_Store,*.jar
+let g:ctrlp_show_hidden = 1
 
 
 """"""""""""""""""""""""""""""
