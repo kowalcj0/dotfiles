@@ -65,6 +65,7 @@ alias h0='set +o history && echo "Bash history is turned off!!"' # turn off hist
 alias h1='set -o history && echo "Bash history is turned on!!"' # turn off history
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 alias port='lsof -Pnl +M -i4 | grep ' # find app that listens on given port
+alias serv='initctl list | sort' # list all the startup services
 alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
 alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
@@ -72,6 +73,7 @@ alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallatio
 alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
+alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() { 
