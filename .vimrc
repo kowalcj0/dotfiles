@@ -127,6 +127,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open=1 " run the syntax check on file open
 let g:syntastic_enable_signs=1
 
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
@@ -221,6 +228,7 @@ let g:ctrlp_prompt_mappings = {
     \ }
 " CtrlP - Exclude files or directories using Vim's wildignore:
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/.git/*,*~,*.db,.DS_Store,*.jar
+let g:ctrlp_show_hidden = 1
 
 
 """"""""""""""""""""""""""""""
@@ -257,6 +265,7 @@ endfunction
 
 
 " Press F7 to toggle line numbering
+set relativenumber
 set number
 set numberwidth=4
 highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
