@@ -1,0 +1,9 @@
+interface: wlan0 # The interface to monitor
+log-scale: no # Use a logarithmic scale for bar graphs.
+dns-resolution: yes # Controls reverse lookup of IP addresses.
+port-display: on # Controls display of port numbers.
+port-resolution: no # Controls conversion of port numbers to service names.
+use-bytes: yes
+sort: destination
+line-display: one-line-both
+show-totals: yes
