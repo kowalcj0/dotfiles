@@ -5,6 +5,7 @@ curl
 keymon
 git
 ctags
+iftop
 exiftool
 xbindkeys
 keepass2

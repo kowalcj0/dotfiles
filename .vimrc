@@ -76,6 +76,32 @@ vnoremap <Space> zf
 " useful when sorting imports
 vnoremap <Leader>s :sort<CR>
 
+" Map H & L to jump between paragraphs
+map <silent> H :<C-U>call HContext()<CR>
+map <silent> L :<C-U>call LContext()<CR>
+func! HContext()
+  let moved = MoveCursor("H")
+  if !moved && line('.') != 1
+    exe "normal! " . "\<pageup>H"
+  endif
+endfunc
+
+func! LContext()
+  let moved = MoveCursor("L")
+  if !moved && line('.') != line('$')
+    exe "normal! " . "\<pagedown>L"
+  endif
+endfunc
+
+func! MoveCursor(key)
+  let cnum = col('.')
+  let lnum = line('.')
+  let wline = winline()
+  exe "normal! " . v:count . a:key
+  let moved = cnum != col('.') || lnum != line('.') || wline != winline()
+  return moved
+endfunc
+
 
 " Settings for vim-markdown
 " ==========================
