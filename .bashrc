@@ -87,6 +87,9 @@ function findPackageUsingAptAndDpkg() {
     dpkg -l \*${1}\*; 
 }
 
+# bash - disable interpreting <C-s> by the terminal
+# No ttyctl, so we need to save and then restore terminal settings
+stty -ixon
 
 # rename image files based on exif data
 # will move files to separate folders and rename files

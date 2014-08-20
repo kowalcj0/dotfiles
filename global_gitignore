@@ -1,0 +1,7 @@
+.idea
+.virtualenv
+__pycache__
+*.pyc
+*.log
+*.tmp
+tags

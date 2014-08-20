@@ -61,11 +61,40 @@ let mapleader=","
 nmap ;s :set invspell spelllang=en<CR>
 
 
+" Copy and paste
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa
+
+
+" Comments plugin - use non default shortcuts
+let g:comments_map_keys = 0
+" key-mappings for comment line in normal mode
+noremap  <silent> <C-L> :call CommentLine()<CR>
+" key-mappings for range comment lines in visual <Shift-V> mode
+vnoremap <silent> <C-L> :call RangeCommentLine()<CR>
+" key-mappings for un-comment line in normal mode
+noremap  <silent> <C-K> :call UnCommentLine()<CR>
+" key-mappings for range un-comment lines in visual <Shift-V> mode
+vnoremap <silent> <C-K> :call RangeUnCommentLine()<CR>
+
+
+
 " Open file explorer in a new Tab
 nnoremap <leader>E :Texplore<CR>
 " Open file explorer in the same window or split
 nnoremap <leader>e :Explore<CR>
 
+" hit Ctrl+s in any mode to save the file
+" Note that remapping C-s requires flow control to be disabled
+" " (e.g. in .bashrc or .zshrc)
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>
+
+" Emacs-like beginning and end of line.
+imap <c-e> <c-o>$
+imap <c-a> <c-o>^
 
 " folding using Space
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
@@ -75,33 +104,6 @@ vnoremap <Space> zf
 " select lines with visual block and press 's' to sort them
 " useful when sorting imports
 vnoremap <Leader>s :sort<CR>
-
-" Map H & L to jump between paragraphs
-map <silent> H :<C-U>call HContext()<CR>
-map <silent> L :<C-U>call LContext()<CR>
-func! HContext()
-  let moved = MoveCursor("H")
-  if !moved && line('.') != 1
-    exe "normal! " . "\<pageup>H"
-  endif
-endfunc
-
-func! LContext()
-  let moved = MoveCursor("L")
-  if !moved && line('.') != line('$')
-    exe "normal! " . "\<pagedown>L"
-  endif
-endfunc
-
-func! MoveCursor(key)
-  let cnum = col('.')
-  let lnum = line('.')
-  let wline = winline()
-  exe "normal! " . v:count . a:key
-  let moved = cnum != col('.') || lnum != line('.') || wline != winline()
-  return moved
-endfunc
-
 
 " Settings for vim-markdown
 " ==========================
@@ -207,6 +209,8 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
+
+
 " navigating between tabs
 map <C-t><up> :tabr<cr>     " jump to first tab - press ctrl+t+up arrow
 map <C-t><down> :tabl<cr>   " jump to last tab - press ctrl+t+down arrow
@@ -265,6 +269,19 @@ let g:ctrlp_show_hidden = 1
 " 3) Use your terminal to paste text from the clipboard. 4) Press F2 (toggles the 'paste' option off).
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
+
+" Press F4 to toggle the diff of currently open buffers/splits.
+noremap <F4> :call DiffMe()<CR>
+let $diff_me=0
+function! DiffMe()
+    windo diffthis
+    if $diff_me>0
+        let $diff_me=0
+    else
+        windo diffoff
+    let $diff_me=1
+    endif
+endfunction
 
 
 " Press F5 to remove unwanted trailing whitespaces in the whole file
