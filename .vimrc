@@ -159,8 +159,9 @@ let g:syntastic_enable_signs=1
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsListSnippets="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
