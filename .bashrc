@@ -41,7 +41,8 @@ alias du='du -kh'          # Makes a more readable output.
 alias df='df -kTh'
 alias h='history'
 alias j='jobs -l'
-alias f='find . -iname '
+function find_file() { find . -iname "*$@*"; }
+alias f=find_file
 alias o='xdg-open'         # open selected file with an associated application
 alias which='type -a'
 alias scan='sudo clamscan -r / --bell --quiet --infected --exclude-dir=/sys --exclude-dir=/dev --exclude-dir=/proc --exclude=.vmdk --exclude=.flac --exclude=.nef'
@@ -87,6 +88,9 @@ function findPackageUsingAptAndDpkg() {
     dpkg -l \*${1}\*; 
 }
 
+# bash - disable interpreting <C-s> by the terminal
+# No ttyctl, so we need to save and then restore terminal settings
+stty -ixon
 
 # rename image files based on exif data
 # will move files to separate folders and rename files
@@ -185,9 +189,9 @@ export TERM="xterm-256color"
 
 source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
 
-#rvm
-if [[ -d $HOME/.rvm ]]
+#rbenv
+if [[ -d $HOME/.rbenv ]]
 then
-    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    export PATH="$HOME/.rbenv/bin:$PATH" # Add RVM to PATH for scripting
+    eval "$(rbenv init -)" # enable shims and autocompletion
 fi
