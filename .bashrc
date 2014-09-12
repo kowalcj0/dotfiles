@@ -51,6 +51,7 @@ alias ct="ctags --exclude=.git --exclude='*.log' --exclude='*.pyc' --exclude=.ro
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias s2u="rename 'y/ /_/' *" # replace spaces in filenames with underscores
+alias rs2u='for i in * ; do if [ -d "$i" ]; then cd "$i"; s2u; cd - ; fi; done' # recursive s2u
 alias ll='ls -Al --group-directories-first'
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias la='ls -Al'          # show hidden files
