@@ -4,7 +4,7 @@
 # checks if code diverged from HEAD
 # if so, then show "!" mark after current branch name in prompt
 function __git_dirty {
-  git diff --quiet HEAD &>/dev/null 
+  git diff --quiet HEAD &>/dev/null
   [ $? == 1 ] && echo "!"
 }
 
@@ -15,15 +15,13 @@ function __git_branch {
 
 # show ruby version only if GEM_HOME is set
 # which implies that custom ruby env is present in current dir
-function __my_rvm_ruby_version {
-  local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
-  [ "$gemset" != "" ] \
+function __my_rbevm_ruby_version {
+  [[ -e .ruby-version ]] \
       && {
         # placing this code here, speeds up moving between dirs
-        # so that current ruby version is checked only if $GEM_HOME is set
-        local current_version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}');
-        local full="${current_version}@${gemset}";
-        echo "[$full]"; \
+        # so that current ruby version is checked only if .ruby-version existis
+        local current_version=$(rbenv local);
+        echo "[$current_version]"; \
       }
 }
 
@@ -64,7 +62,7 @@ bash_prompt() {
   local UC=$W                 # user's color
   [ $UID -eq "0" ] && UC=$R   # root's color
 
-  PS1="$B\$(__my_rvm_ruby_version)$Y\$(__git_branch)$EMY\$(__git_dirty)\[$(tput setaf 1)\]\u@\h:\w \t \[$(tput sgr0)\]${NONE}$ "
+  PS1="$B\$(__my_rbevm_ruby_version)$Y\$(__git_branch)$EMY\$(__git_dirty)\[$(tput setaf 1)\]\u@\h:\w \t \[$(tput sgr0)\]${NONE}$ "
 }
 
 bash_prompt
