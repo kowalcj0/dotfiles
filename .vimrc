@@ -209,7 +209,13 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
-
+" configure SignColumn used by vim-gitgutter
+" https://github.com/airblade/vim-gitgutter#sign-column
+hi SignColumn ctermbg=0 ctermfg=white
+hi GitGutterAdd ctermbg=0 ctermfg=46
+hi GitGutterChange ctermbg=0 ctermfg=172
+hi GitGutterDelete ctermbg=0 ctermfg=160
+hi GitGutterChangeDelete ctermbg=0 ctermfg=40
 
 " navigating between tabs
 map <C-t><up> :tabr<cr>     " jump to first tab - press ctrl+t+up arrow

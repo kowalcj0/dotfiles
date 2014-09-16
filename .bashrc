@@ -122,19 +122,20 @@ export GIT_SSL_NO_VERIFY=true
 ## =============================================================================
 ## git command aliases
 ## =============================================================================
-alias gp='git show --pretty="format:" --name-only ' # pretty print of files changes in given commit, ex.: gp commitID
+# but first configure the difftool http://stackoverflow.com/a/3713865
+alias ga='git branch -a' # show all branches
 alias gb='git diff --stat-width=250 --stat-width=250 --stat-name-width=500 --color ' # diff branches by showing only modified files, usage: gb master..janusz or gb janusz..master
 alias gc='git checkout ' # a shortcut for checking out a branch
+alias gd=gitBranchDiffFile; # compare file between branches
+alias ge='git ls-files . --exclude-standard --others' #show all the non-tracked files
+alias gh='git difftool HEAD' # use default diff tool to compare changes since HEAD
+alias gi='git ls-files . --ignored --exclude-standard --others' #show all the ignored files
+alias gk='gitk --all' # view full version tree in gitk
 alias gl='git log -n ' # show a given number of commit comments, ex: gl 2
 alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" # a nice representation of the commit tree
-alias gh='git difftool HEAD' # use default diff tool to compare changes since HEAD
-# but first configure the difftool http://stackoverflow.com/a/3713865
-alias gs='git status' # show the status
-alias ge='git ls-files . --exclude-standard --others' #show all the non-tracked files
-alias gi='git ls-files . --ignored --exclude-standard --others' #show all the ignored files
 alias go='git log origin/master..master' # list commits not pushed to the origin
-alias gk='gitk --all' # view full version tree in gitk
-alias gd=gitBranchDiffFile; # compare file between branches
+alias gp='git show --pretty="format:" --name-only ' # pretty print of files changes in given commit, ex.: gp commitID
+alias gs='git status' # show the status
 
 # $1 first branch
 # $2 second branch
