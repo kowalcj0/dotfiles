@@ -142,9 +142,7 @@ filetype off
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
 " curl -so ~/.vim/autoload https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name folder
-call pathogen#infect()
-call pathogen#helptags()
-
+execute pathogen#infect()
 filetype plugin indent on
 syntax on
 

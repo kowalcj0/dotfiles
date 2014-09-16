@@ -39,6 +39,8 @@ Initialize all the submodules:
 ```bash
     git submodule init
     git submodule update
+    # or in case you had an older version of this repo
+    git submodule update --init
 ```
 
 Create a backup copy of your current cfg files:
