@@ -185,7 +185,7 @@ export PATH=$PATH:$HOME/bin
 # set 256 color for terminator
 # http://vim.wikia.com/wiki/256_colors_setup_for_console_Vim#Terminal_recap
 # http://askubuntu.com/a/14891
-export TERM="xterm-256color"
+export TERM=xterm-256color
 
 source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
 

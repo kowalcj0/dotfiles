@@ -21,6 +21,11 @@ set shiftwidth=4
 set shiftround
 set ruler
 
+" setting for the vim-airline
+set laststatus=2
+let g:airline_powerline_fonts=1
+let g:airline_theme='wombat'
+
 " Make search case insensitive
 set ignorecase
 set incsearch
@@ -167,10 +172,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 set t_Co=256
 "color wombat256mod
 color miko
-
-" Settings for Vim-powerline
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
 
 
 "SCALA syntax highlight script
