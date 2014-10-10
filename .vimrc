@@ -56,6 +56,13 @@ set tags+=./tags;
 let mapleader=","
 
 
+""""""""""""" LEARNING VIM THE HARD WAY
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
@@ -114,12 +121,6 @@ vnoremap <Leader>s :sort<CR>
 " ==========================
 let g:vim_markdown_folding_disabled=1
 " let g:vim_markdown_initial_foldlevel=1
-
-
-" Python folding
-" mkdir ~/.vim/foldingplugin
-" wget -O ~/.vim/foldingplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
 
 
 " Fix the issues with X11 clipboard
