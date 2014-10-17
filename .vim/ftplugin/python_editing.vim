@@ -1,3 +1,40 @@
+" created by
+" Daniel Nogradi
+"  
+"  script type
+"  ftplugin
+"   
+"   description
+"   Folding goes like this: 
+"
+"   1. Only top level class or function definitions are folded (no nesting) 
+"   2. Folding is done one line after the class or function definition, so 
+"   for example the line 'class foo( bar )' is right above the fold 
+"   3. Fold text is the first line of the corresponding docstring (if any) 
+"   together with the number of folded lines 
+"   4. Toggle all folds on/off with the key F 
+"   5. Toggle the fold under the cursor on/off with the key f 
+"   6. In some rare cases folding can break down which can be fixed by
+"   :call ReFold() 
+"   The reason for this break down is not known sometimes it
+"   happens when jumping between different files using tags. 
+"
+"   In addition the script binds the key <Shift-e> (hint:
+"   _e_xecute) to saving the file and executing it in the
+"   interpreter assuming that /usr/bin/env exists otherwise you
+"   need to change this key mapping slightly. The keys 'gd'
+"   (hint: _g_o _d_efinition) are also bound to look for the
+"   definition of a function under the cursor similarly to the
+"   same key binding for C. 
+"
+"   Inspired by vimscript #515, actually the way the number of
+"   lines are displayed is stolen from there :). A related
+"   script is vimscript #781 and a tip on toggling a fold is
+"   vimtip #108. 
+"
+"   The content of the script is this, in case you find it more
+"   convenient to copy/paste it than downloading: 
+"
 " Only do this when not done yet for this buffer
 if exists("b:did_ftplugin")
 finish
@@ -11,8 +48,8 @@ set foldmethod=expr
 set foldexpr=PythonFoldExpr(v:lnum)
 set foldtext=PythonFoldText()
 
-map <buffer> f za
-map <buffer> F :call ToggleFold()<CR>
+map <buffer> <leader>f za
+map <buffer> <leader>F :call ToggleFold()<CR>
 let b:folded = 1
 
 function! ToggleFold()

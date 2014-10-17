@@ -169,8 +169,7 @@ function gitBranchDiffFile() {
 # whereas gg will skip more files, like js, minified files and so on
 # Usage: g pattern
 function g() { find . -type f ! -iname "*.pyc" ! -iname ".git" ! -iname "*log*" ! -iname "tags" ! -iname ".ropeproject" -print0 | xargs -0 grep --colour=auto "${1}" ; }
-function gg() { find . -type f ! -iname "*.pyc" ! -iname "*.js" ! -iname "*.css" ! -iname "*log*" ! -iname "*jquery*" ! -iname "*min*" ! -iname "*less*" ! -iname "*map*" ! -iname "*.json" ! -name "*.html" ! -iname ".git" ! -iname "tags" ! -iname ".ropeproject" ! -path git -print0 | xargs -0 grep --colour=auto "${1}" ; }
-
+function g() { find . -type f ! -iname "*.pyc" ! -iname "*.js" ! -iname "*.css" ! -iname "*log*" ! -iname "*jquery*" ! -iname "*min*" ! -iname "*less*" ! -iname "*map*" ! -iname "*.json" ! -name "*.html" ! -iname "tags" ! -iname ".ropeproject" ! -path "*.git*" ! -path "*.kitchen*" ! -path "*.bundle*" ! -path git -print0 | xargs -0 grep --colour=auto "${1}" ; }
 
 # find all of the distinct file extensions in a folder
 # http://stackoverflow.com/questions/1842254/how-can-i-find-all-of-the-distinct-file-extensions-in-a-folder-hierarchy
