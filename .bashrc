@@ -3,6 +3,26 @@
 [[ $- == *i* ]] || return
 
 
+# enable Vi mode
+# Vi mode allows for the use of vi like commands when at the bash prompt.
+# When set to this mode initially you will be in insert mode
+# (be able to type at the prompt unlike when you enter vi).
+# Hitting the escape key takes you into command mode.
+# Commands to take advantage of bash's Vi Mode:
+# h   Move cursor left
+# l   Move cursor right
+# A   Move cursor to end of line and put in insert mode
+# 0   (zero) Move cursor to beginning of line (doesn't put in insert mode)
+# i   Put into insert mode at current position
+# a   Put into insert mode after current position
+# dd  Delete line (saved for pasting)
+# D   Delete text after current cursor position (saved for pasting)
+# p   Paste text that was deleted
+# j   Move up through history commands
+# k   Move down through history commands
+# u   Undo
+set -o vi
+
 ###############################################################################
 # 3rd party scripts
 ###############################################################################
@@ -78,14 +98,14 @@ alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 
 # $1 - package name you want to find
-function findPackageUsingAptAndDpkg() { 
+function findPackageUsingAptAndDpkg() {
     echo "Searching for a package '${1}' using apt-cache:...
 *******************************************************";
     apt-cache search ${1};
 
     echo -e "\nSearching for a package '${1}' using dpkg:...
 *******************************************************";
-    dpkg -l \*${1}\*; 
+    dpkg -l \*${1}\*;
 }
 
 # bash - disable interpreting <C-s> by the terminal
@@ -108,7 +128,7 @@ function portscaniprange() {
     local iprange="${1}"
     local port="${2}"
     for i in {43..43}; do
-        nc -v -n -z -w 1 ${iprange}.$i ${port}; 
+        nc -v -n -z -w 1 ${iprange}.$i ${port};
     done
 }
 
@@ -144,12 +164,12 @@ function gitBranchDiffFile() {
     git diff "${1}" "${2}" -- "${3}";
 }
 
-# to grep through all the files found by find in the current dir, 
+# to grep through all the files found by find in the current dir,
 # g will search through more files
 # whereas gg will skip more files, like js, minified files and so on
 # Usage: g pattern
-function g() { find . -type f ! -iname "*.pyc" ! -iname "*.js" ! -iname "*.css" ! -iname "*jquery*" ! -iname "*min*" ! -iname "*less*" ! -iname "*map*" ! -iname "*.json" ! -name "*.html" ! -iname ".git" ! -iname "tags" ! -iname ".ropeproject" ! -path git -print0 | xargs -0 grep --colour=auto "${1}" ; }
-function gg() { find . -type f ! -iname "*.pyc" ! -iname ".git" ! -iname "tags" ! -iname ".ropeproject" -print0 | xargs -0 grep --colour=auto "${1}" ; }
+function g() { find . -type f ! -iname "*.pyc" ! -iname ".git" ! -iname "*log*" ! -iname "tags" ! -iname ".ropeproject" -print0 | xargs -0 grep --colour=auto "${1}" ; }
+function gg() { find . -type f ! -iname "*.pyc" ! -iname "*.js" ! -iname "*.css" ! -iname "*log*" ! -iname "*jquery*" ! -iname "*min*" ! -iname "*less*" ! -iname "*map*" ! -iname "*.json" ! -name "*.html" ! -iname ".git" ! -iname "tags" ! -iname ".ropeproject" ! -path git -print0 | xargs -0 grep --colour=auto "${1}" ; }
 
 
 # find all of the distinct file extensions in a folder

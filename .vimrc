@@ -55,7 +55,14 @@ set tags+=./tags;
 " handy with new shortcuts
 let mapleader=","
 
+" Visual line repeat {{{2
+xnoremap . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
@@ -234,6 +241,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Open splits in various ways
+noremap <leader>h :Sex<CR>
 noremap <leader>v :vsp<CR>
 noremap <leader>ev :Vexplore<CR>
 noremap <leader>en :vnew<CR>
