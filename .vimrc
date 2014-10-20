@@ -236,10 +236,16 @@ map <C-t>k :tabr<cr>        " jump to first tab - press ctrl+t+k
 map <C-t>j :tabl<cr>        " jump to last tab - press ctrl+t+j
 
 " navigating between splits using Ctrl+hjkl
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
+
+" resize current buffer by +/- 5 - using Ctrl+w+hjkl
+nnoremap <C-w>h :vertical resize -5<cr>
+nnoremap <C-w>j :resize +5<cr>
+nnoremap <C-w>k :resize -5<cr>
+nnoremap <C-w>l :vertical resize +5<cr>
 
 " Open splits in various ways
 noremap <leader>h :Sex<CR>
