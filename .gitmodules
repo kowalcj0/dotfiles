@@ -70,3 +70,15 @@
 [submodule ".vim/bundle/viw-windowswap"]
 	path = .vim/bundle/viw-windowswap
 	url = git@github.com:wesQ3/vim-windowswap.git
+[submodule ".vim/bundle/vim-expand-region"]
+	path = .vim/bundle/vim-expand-region
+	url = git@github.com:terryma/vim-expand-region.git
+[submodule ".vim/bundle/vim-github-comment"]
+	path = .vim/bundle/vim-github-comment
+	url = git@github.com:mmozuras/vim-github-comment.git
+[submodule ".vim/bundle/webapi-vim"]
+	path = .vim/bundle/webapi-vim
+	url = git://github.com/mattn/webapi-vim.git
+[submodule ".vim/bundle/pytest.vim"]
+	path = .vim/bundle/pytest.vim
+	url = git@github.com:alfredodeza/pytest.vim.git
