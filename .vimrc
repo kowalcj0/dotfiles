@@ -149,6 +149,10 @@ command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
 
 
+" Show absolute line numbers when the window isn't in focus.
+au WinEnter * setl rnu | au WinLeave * setl nornu
+
+
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
 let g:ctrlp_prompt_mappings = {
@@ -181,6 +185,13 @@ noremap <Right> <NOP>
 " https://github.com/terryma/vim-expand-region
 " visually select anything and then press + to expand the visual selection
 " and _ to shrink it.
+
+
+" emacs like jumping to the begging and end of line using Ctrl+a and Ctrl+e
+imap <C-a> <C-o>0
+imap <C-e> <C-o>$
+map <C-e> $
+map <C-a> 0
 
 
 " define the Leader key
@@ -246,6 +257,15 @@ nnoremap <leader>E :Texplore<CR>
 nnoremap <leader>e :Explore<CR>
 
 
+" Move to the previous buffer
+nnoremap H :bprevious<CR>
+" Move to the next buffer
+nnoremap L :bnext<CR>
+" Replace H and L: H jump screen top, L screen down
+nnoremap zh H
+nnoremap zl L
+
+
 " hit Ctrl+s in any mode to save the file
 " Note that remapping C-s requires flow control to be disabled
 " " (e.g. in .bashrc or .zshrc)
@@ -274,12 +294,6 @@ vnoremap <Leader>s :sort<CR>
 " ==========================
 let g:vim_markdown_folding_disabled=1
 " let g:vim_markdown_initial_foldlevel=1
-
-
-" easier moving of code block
-" select using visual block and then simply < or > to change indentation
-vnoremap < <gv " better indentation
-vnoremap > >gv " better indentation
 
 
 " navigating between tabs
@@ -385,6 +399,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+
 " Press F4 to toggle the diff of currently open buffers/splits.
 noremap <F4> :call DiffMe()<CR>
 let $diff_me=0
@@ -428,6 +443,7 @@ set number
 set numberwidth=4
 highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
 nnoremap <silent> <F7> :set invnumber<CR> " Press F7 to toggle line numbers
+
 
 " Tag list settings
 nnoremap <silent> <F8> :TlistToggle<CR>
