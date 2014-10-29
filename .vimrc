@@ -232,6 +232,10 @@ nmap <Leader>s :set invspell spelllang=en<CR>
 nmap <silent><Leader>f <Esc>:Pytest function<CR>
 
 
+" Reformat whole file
+nnoremap <Leader>r mzgg=G`z
+
+
 " Copy and paste
 vmap <C-c> "+yi
 vmap <C-x> "+c
@@ -400,6 +404,26 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 
+" toggle number mode
+function! ToggleNumberMode()
+    if &relativenumber == 1
+	set norelativenumber
+        set number
+	echo "normal numbering"
+    elseif &number == 1
+	set nonumber
+	echo "numbering off"
+    else
+	set relativenumber
+	echo "relative numbering"
+    endif
+    return
+endfunc
+nnoremap <F3> :call ToggleNumberMode()<cr>
+vnoremap <F3> :call ToggleNumberMode()<cr>
+inoremap <F3> <c-o>:call ToggleNumberMode()<cr>
+
+
 " Press F4 to toggle the diff of currently open buffers/splits.
 noremap <F4> :call DiffMe()<CR>
 let $diff_me=0
@@ -468,6 +492,7 @@ function! HexMe()
     let $in_hex=1
     endif
 endfunction
+
 
 " define custom whitespace characters
 " ~ - for non breaking space (U+00A0)
