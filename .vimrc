@@ -155,10 +155,10 @@ au WinEnter * setl rnu | au WinLeave * setl nornu
 
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+"let g:ctrlp_prompt_mappings = {
+    "\ 'AcceptSelection("e")': ['<c-t>'],
+    "\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    "\ }
 " CtrlP - Exclude files or directories using Vim's wildignore:
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/.git/*,*~,*.db,.DS_Store,*.jar
 let g:ctrlp_show_hidden = 1
@@ -168,6 +168,12 @@ let g:ctrlp_show_hidden = 1
 let g:jedi#use_tabs_not_buffers = 1
 " no docstring window popup during completion
 autocmd FileType python setlocal completeopt-=preview
+
+
+" Settings for vim-markdown
+" ==========================
+let g:vim_markdown_folding_disabled=1
+" let g:vim_markdown_initial_foldlevel=1
 
 
 """"""""""""" LEARNING VIM THE HARD WAY
@@ -186,17 +192,21 @@ noremap <Right> <NOP>
 " visually select anything and then press + to expand the visual selection
 " and _ to shrink it.
 
-
-" emacs like jumping to the begging and end of line using Ctrl+a and Ctrl+e
-imap <C-a> <C-o>0
-imap <C-e> <C-o>$
-map <C-e> $
-map <C-a> 0
-
-
 " define the Leader key
 " handy with new shortcuts
 let mapleader="\<Space>"
+
+
+" emacs like jumping to the begging and end of line using Ctrl+a and Ctrl+e
+imap <C-a> <C-o>^
+imap <C-e> <C-o>$
+map <C-e> $
+map <C-a> ^
+
+
+" Navigate wrapped lines naturally
+nnoremap j gj
+nnoremap k gk
 
 
 " Visual line repeat by Drew Neil
@@ -210,11 +220,13 @@ endfunction
 
 
 " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-" Type <Space>o to open a new file:
+" Open CtrlP Buffer Explorer using leader + m
+nnoremap <leader>b :CtrlPBuffer<CR>
+" Type <Leader>o to open a new file:
 nnoremap <Leader>o :CtrlP<CR>
-" Type <Space>w to save file (a lot faster than :w<Enter>):
+" Type <Leader>w to save file (a lot faster than :w<Enter>):
 nnoremap <Leader>w :w<CR>
-" " Copy & paste to system clipboard with <Space>p and <Space>y:
+" " Copy & paste to system clipboard with <Leader>p and <Leader>y:
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
@@ -277,11 +289,6 @@ map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
 
-" Emacs-like beginning and end of line.
-imap <c-e> <c-o>$
-imap <c-a> <c-o>^
-
-
 " folding using Space
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -292,12 +299,6 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 " select lines with visual block and press 's' to sort them
 " useful when sorting imports
 vnoremap <Leader>s :sort<CR>
-
-
-" Settings for vim-markdown
-" ==========================
-let g:vim_markdown_folding_disabled=1
-" let g:vim_markdown_initial_foldlevel=1
 
 
 " navigating between tabs
@@ -335,6 +336,8 @@ noremap <leader>t :Tex<CR>
 
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
+"change paste - will replace word with pasted word
+map <silent> cp "_cw<C-R>"<Esc>
 
 
 "line and column highlight
@@ -347,10 +350,6 @@ hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=
 
 " leader + space to clear the search results highlighting
 map <Leader><Space> :noh<CR>;
-
-
-"change paste - will replace word with pasted word
-map <silent> cp "_cw<C-R>"<Esc>
 
 
 """""""""""""""""""""""" Search for word under cursor using * and # """""""""""
@@ -404,18 +403,23 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 
-" toggle number mode
+" Pres F3 to toggle number mode
+set relativenumber
+set number
+set numberwidth=4
+highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
 function! ToggleNumberMode()
     if &relativenumber == 1
-	set norelativenumber
+	    set norelativenumber
         set number
-	echo "normal numbering"
+	    echo "normal numbering"
     elseif &number == 1
-	set nonumber
-	echo "numbering off"
+	    set nonumber
+	    echo "numbering off"
     else
-	set relativenumber
-	echo "relative numbering"
+	    set relativenumber
+        set invnumber
+	    echo "relative numbering"
     endif
     return
 endfunc
@@ -447,8 +451,8 @@ nnoremap <silent><F6> :call <SID>ToggleColorColumn()<cr>
 " toggle colored right border after 80 chars
 set colorcolumn=80
 set tw=79       " width of document (used by gd)
-set nowrap      " don't automatically wrap on load
-set fo-=t       " don't automatically wrap text when typing
+"set nowrap      " don't automatically wrap on load
+"set fo-=t       " don't automatically wrap text when typing
 let s:color_column_old = 0
 function! s:ToggleColorColumn()
     if s:color_column_old == 0
@@ -459,14 +463,6 @@ function! s:ToggleColorColumn()
         let s:color_column_old = 0
     endif
 endfunction
-
-
-" Press F7 to toggle line numbering
-set relativenumber
-set number
-set numberwidth=4
-highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
-nnoremap <silent> <F7> :set invnumber<CR> " Press F7 to toggle line numbers
 
 
 " Tag list settings
