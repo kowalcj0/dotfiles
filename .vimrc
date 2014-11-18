@@ -151,10 +151,10 @@ command! -bang WQ wq<bang>
 
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+"let g:ctrlp_prompt_mappings = {
+    "\ 'AcceptSelection("e")': ['<c-t>'],
+    "\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    "\ }
 " CtrlP - Exclude files or directories using Vim's wildignore:
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/.git/*,*~,*.db,.DS_Store,*.jar
 let g:ctrlp_show_hidden = 1
@@ -256,13 +256,15 @@ imap <C-s> <esc>:w<CR>
 " Emacs-like beginning and end of line.
 imap <c-e> <c-o>$
 imap <c-a> <c-o>^
+nnoremap <C-e> <c-o>$
+nnoremap <C-a> <c-o>^
 
 
 " folding using Space
+set foldenable
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-"nnoremap <Leader>f za
-"vnoremap <Space> zf
+vnoremap <Space> zf
 
 
 " select lines with visual block and press 's' to sort them
@@ -305,6 +307,12 @@ nnoremap <C-w>h :vertical resize -5<cr>
 nnoremap <C-w>j :resize +5<cr>
 nnoremap <C-w>k :resize -5<cr>
 nnoremap <C-w>l :vertical resize +5<cr>
+
+
+" Move visual block up and down using J and K
+" http://vimrcfu.com/snippet/77
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 
 " Open splits in various ways
@@ -454,12 +462,13 @@ function! HexMe()
 endfunction
 
 " define custom whitespace characters
-" ~ - for non breaking space (U+00A0)
+" ◉ - for non breaking space (U+00A0)
 " »» - for tab
 " ¶ - for trailing spaces
-exec "set listchars=tab:\uBB\uBB,trail:\uB6,nbsp:~"
+exec "set listchars=tab:\uBB\uBB,trail:\uB6,nbsp:\u25c9"
 " Press F12 to toggle tab characters. Visual whitespace
 nmap <F12> :set list! list?<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => END OF F-keys mappings
