@@ -149,6 +149,10 @@ command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
 
 
+" Show absolute line numbers when the window isn't in focus.
+au WinEnter * setl rnu | au WinLeave * setl nornu
+
+
 " Remap CtrlP.vim keys config to open files aleays in a new tab
 " https://github.com/kien/ctrlp.vim/issues/160
 "let g:ctrlp_prompt_mappings = {
@@ -164,6 +168,12 @@ let g:ctrlp_show_hidden = 1
 let g:jedi#use_tabs_not_buffers = 1
 " no docstring window popup during completion
 autocmd FileType python setlocal completeopt-=preview
+
+
+" Settings for vim-markdown
+" ==========================
+let g:vim_markdown_folding_disabled=1
+" let g:vim_markdown_initial_foldlevel=1
 
 
 """"""""""""" LEARNING VIM THE HARD WAY
@@ -182,10 +192,21 @@ noremap <Right> <NOP>
 " visually select anything and then press + to expand the visual selection
 " and _ to shrink it.
 
-
 " define the Leader key
 " handy with new shortcuts
 let mapleader="\<Space>"
+
+
+" emacs like jumping to the begging and end of line using Ctrl+a and Ctrl+e
+imap <C-a> <C-o>^
+imap <C-e> <C-o>$
+map <C-e> $
+map <C-a> ^
+
+
+" Navigate wrapped lines naturally
+nnoremap j gj
+nnoremap k gk
 
 
 " Visual line repeat by Drew Neil
@@ -199,11 +220,13 @@ endfunction
 
 
 " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-" Type <Space>o to open a new file:
+" Open CtrlP Buffer Explorer using leader + m
+nnoremap <leader>b :CtrlPBuffer<CR>
+" Type <Leader>o to open a new file:
 nnoremap <Leader>o :CtrlP<CR>
-" Type <Space>w to save file (a lot faster than :w<Enter>):
+" Type <Leader>w to save file (a lot faster than :w<Enter>):
 nnoremap <Leader>w :w<CR>
-" " Copy & paste to system clipboard with <Space>p and <Space>y:
+" " Copy & paste to system clipboard with <Leader>p and <Leader>y:
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
@@ -219,6 +242,10 @@ nmap <Leader>s :set invspell spelllang=en<CR>
 " VIM Pytest
 " https://github.com/alfredodeza/pytest.vim
 nmap <silent><Leader>f <Esc>:Pytest function<CR>
+
+
+" Reformat whole file
+nnoremap <Leader>r mzgg=G`z
 
 
 " Copy and paste
@@ -246,18 +273,26 @@ nnoremap <leader>E :Texplore<CR>
 nnoremap <leader>e :Explore<CR>
 
 
+" Move to the previous buffer
+nnoremap H :bprevious<CR>
+" Move to the next buffer
+nnoremap L :bnext<CR>
+" Replace H and L: H jump screen top, L screen down
+nnoremap zh H
+nnoremap zl L
+
+
+" Move visual block up and down using J and K
+" http://vimrcfu.com/snippet/77
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+
 " hit Ctrl+s in any mode to save the file
 " Note that remapping C-s requires flow control to be disabled
 " " (e.g. in .bashrc or .zshrc)
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
-
-
-" Emacs-like beginning and end of line.
-imap <c-e> <c-o>$
-imap <c-a> <c-o>^
-nnoremap <C-e> <c-o>$
-nnoremap <C-a> <c-o>^
 
 
 " folding using Space
@@ -270,18 +305,6 @@ vnoremap <Space> zf
 " select lines with visual block and press 's' to sort them
 " useful when sorting imports
 vnoremap <Leader>s :sort<CR>
-
-
-" Settings for vim-markdown
-" ==========================
-let g:vim_markdown_folding_disabled=1
-" let g:vim_markdown_initial_foldlevel=1
-
-
-" easier moving of code block
-" select using visual block and then simply < or > to change indentation
-vnoremap < <gv " better indentation
-vnoremap > >gv " better indentation
 
 
 " navigating between tabs
@@ -309,12 +332,6 @@ nnoremap <C-w>k :resize -5<cr>
 nnoremap <C-w>l :vertical resize +5<cr>
 
 
-" Move visual block up and down using J and K
-" http://vimrcfu.com/snippet/77
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-
 " Open splits in various ways
 set splitright  " open splits to the right
 noremap <leader>h :Sex<CR>
@@ -325,6 +342,8 @@ noremap <leader>t :Tex<CR>
 
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
+"change paste - will replace word with pasted word
+map <silent> cp "_cw<C-R>"<Esc>
 
 
 "line and column highlight
@@ -337,10 +356,6 @@ hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=
 
 " leader + space to clear the search results highlighting
 map <Leader><Space> :noh<CR>;
-
-
-"change paste - will replace word with pasted word
-map <silent> cp "_cw<C-R>"<Esc>
 
 
 """""""""""""""""""""""" Search for word under cursor using * and # """""""""""
@@ -393,6 +408,32 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+
+" Pres F3 to toggle number mode
+set relativenumber
+set number
+set numberwidth=4
+highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
+function! ToggleNumberMode()
+    if &relativenumber == 1
+	    set norelativenumber
+        set number
+	    echo "normal numbering"
+    elseif &number == 1
+	    set nonumber
+	    echo "numbering off"
+    else
+	    set relativenumber
+        set invnumber
+	    echo "relative numbering"
+    endif
+    return
+endfunc
+nnoremap <F3> :call ToggleNumberMode()<cr>
+vnoremap <F3> :call ToggleNumberMode()<cr>
+inoremap <F3> <c-o>:call ToggleNumberMode()<cr>
+
+
 " Press F4 to toggle the diff of currently open buffers/splits.
 noremap <F4> :call DiffMe()<CR>
 let $diff_me=0
@@ -416,8 +457,8 @@ nnoremap <silent><F6> :call <SID>ToggleColorColumn()<cr>
 " toggle colored right border after 80 chars
 set colorcolumn=80
 set tw=79       " width of document (used by gd)
-set nowrap      " don't automatically wrap on load
-set fo-=t       " don't automatically wrap text when typing
+"set nowrap      " don't automatically wrap on load
+"set fo-=t       " don't automatically wrap text when typing
 let s:color_column_old = 0
 function! s:ToggleColorColumn()
     if s:color_column_old == 0
@@ -430,14 +471,7 @@ function! s:ToggleColorColumn()
 endfunction
 
 
-" Press F7 to toggle line numbering
-set relativenumber
-set number
-set numberwidth=4
-highlight LineNr term=bold cterm=NONE ctermfg=White ctermbg=DarkBlue gui=NONE guifg=DarkGrey guibg=NONE
-nnoremap <silent> <F7> :set invnumber<CR> " Press F7 to toggle line numbers
-
-" Tag list settings
+" Press F8 to toggle tag list
 nnoremap <silent> <F8> :TlistToggle<CR>
 let Tlist_WinWidth = 40
 let Tlist_Inc_Winwidth = 0
@@ -446,7 +480,7 @@ let Tlist_Auto_Open = 0
 let Tlist_Exit_OnlyWindow = 1
 
 
-" toggle hex-editor
+" Press F10 to toggle hex-editor
 noremap <F10> :call HexMe()<CR>
 let $in_hex=0
 function! HexMe()
@@ -460,6 +494,7 @@ function! HexMe()
     let $in_hex=1
     endif
 endfunction
+
 
 " define custom whitespace characters
 " ◉ - for non breaking space (U+00A0)
