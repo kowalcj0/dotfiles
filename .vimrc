@@ -297,6 +297,12 @@ nnoremap zh H
 nnoremap zl L
 
 
+" Move visual block up and down using J and K
+" http://vimrcfu.com/snippet/77
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+
 " hit Ctrl+s in any mode to save the file
 " Note that remapping C-s requires flow control to be disabled
 " " (e.g. in .bashrc or .zshrc)
@@ -305,10 +311,10 @@ imap <C-s> <esc>:w<CR>
 
 
 " folding using Space
+set foldenable
 " found http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-"nnoremap <Leader>f za
-"vnoremap <Space> zf
+vnoremap <Space> zf
 
 
 " select lines with visual block and press 's' to sort them
@@ -480,7 +486,7 @@ function! s:ToggleColorColumn()
 endfunction
 
 
-" Tag list settings
+" Press F8 to toggle tag list
 nnoremap <silent> <F8> :TlistToggle<CR>
 let Tlist_WinWidth = 40
 let Tlist_Inc_Winwidth = 0
@@ -489,7 +495,7 @@ let Tlist_Auto_Open = 0
 let Tlist_Exit_OnlyWindow = 1
 
 
-" toggle hex-editor
+" Press F10 to toggle hex-editor
 noremap <F10> :call HexMe()<CR>
 let $in_hex=0
 function! HexMe()
@@ -506,12 +512,13 @@ endfunction
 
 
 " define custom whitespace characters
-" ~ - for non breaking space (U+00A0)
+" ◉ - for non breaking space (U+00A0)
 " »» - for tab
 " ¶ - for trailing spaces
-exec "set listchars=tab:\uBB\uBB,trail:\uB6,nbsp:~"
+exec "set listchars=tab:\uBB\uBB,trail:\uB6,nbsp:\u25c9"
 " Press F12 to toggle tab characters. Visual whitespace
 nmap <F12> :set list! list?<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => END OF F-keys mappings

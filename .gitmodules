@@ -82,3 +82,6 @@
 [submodule ".vim/bundle/pytest.vim"]
 	path = .vim/bundle/pytest.vim
 	url = git@github.com:alfredodeza/pytest.vim.git
+[submodule ".vim/bundle/python-SimplyFold"]
+	path = .vim/bundle/python-SimplyFold
+	url = git@github.com:tmhedberg/SimpylFold.git
