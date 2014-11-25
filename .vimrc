@@ -209,6 +209,21 @@ nnoremap j gj
 nnoremap k gk
 
 
+" center the window automatically around the cursor after jumping to a location
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap } }zz
+nnoremap { {zz
+
+
+" Y will yank from the cursor to the end of the line
+nnoremap Y y$
+
+
+" move to last change
+nnoremap <Leader>l `.
+
+
 " Visual line repeat by Drew Neil
 " https://github.com/nelstrom/dotfiles/
 xnoremap . :normal .<CR>
