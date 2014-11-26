@@ -51,6 +51,8 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set autochdir
 set tags+=./tags;
 
+" make undescore a word separator
+set iskeyword-=_
 
 " configure github username for the vim-github-comment
 let g:github_user = 'kowalcj0'
