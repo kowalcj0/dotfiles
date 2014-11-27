@@ -65,6 +65,8 @@ let g:github_comment_open_browser = 1
 set clipboard=unnamedplus
 set showmode
 
+" always show tabline
+set showtabline=2
 
 " Pathogen load
 " https://github.com/klen/python-mode#id6
