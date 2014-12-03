@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/python-SimplyFold"]
 	path = .vim/bundle/python-SimplyFold
 	url = git@github.com:tmhedberg/SimpylFold.git
+[submodule ".vim/bundle/vim-visual-increment"]
+	path = .vim/bundle/vim-visual-increment
+	url = git@github.com:triglav/vim-visual-increment.git

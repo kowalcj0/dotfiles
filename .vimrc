@@ -25,6 +25,12 @@ set ruler
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_theme='wombat'
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+
 
 " Make search case insensitive
 set ignorecase
@@ -202,10 +208,10 @@ let mapleader="\<Space>"
 
 
 " emacs like jumping to the begging and end of line using Ctrl+a and Ctrl+e
-imap <C-a> <C-o>^
+imap <C-q> <C-o>^
 imap <C-e> <C-o>$
 map <C-e> $
-map <C-a> ^
+map <C-q> ^
 
 
 " Navigate wrapped lines naturally
