@@ -73,6 +73,10 @@ alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias s2u="rename 'y/ /_/' *" # replace spaces in filenames with underscores
 alias rs2u='for i in * ; do if [ -d "$i" ]; then cd "$i"; s2u; cd - ; fi; done' # recursive s2u
+alias types=findTypes
+alias sacd2flac='for f in *.dsf ; do dsf2flac -i "${f}" -o "${f}.flac" ; done;'
+alias tostereo=sacdiso2stereo
+alias tomulti=sacdiso2multi
 alias ll='ls -Al --group-directories-first'
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias la='ls -Al'          # show hidden files
@@ -94,6 +98,7 @@ alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
 alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
+alias pkg=findInstalledPackage; # find among installed packages
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 
@@ -106,6 +111,22 @@ function findPackageUsingAptAndDpkg() {
     echo -e "\nSearching for a package '${1}' using dpkg:...
 *******************************************************";
     dpkg -l \*${1}\*;
+}
+
+function findInstalledPackage() {
+    dpkg --get-selections | grep -v deinstall |  grep ${1}
+}
+
+function findTypes() {
+    find . -type f -iname '*.*' | awk -F . '{print $NF}' | sort | uniq -c | sort
+}
+
+function sacdiso2stereo() {
+    sacd_extract -2 -s -P --input="${1}"
+}
+
+function sacdiso2multi() {
+    sacd_extract -m -s -P --input="${1}"
 }
 
 # bash - disable interpreting <C-s> by the terminal
