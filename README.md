@@ -7,7 +7,7 @@ My Bash and Vim config files. Maybe someone will find'em handy :)
 open the file and just a have a look at all the aliases
 
 ##.vimrc
-F2 - toggle paste mode that will keep the indendation intact  
+F2 - toggle paste mode that will keep the indentation intact  
 F4 - toggle diff of currently opened buffers/splits  
 F5 - remove all trailing whitespaces  
 F6 - toggle 80 chars vertical line  
@@ -41,6 +41,8 @@ Initialize all the submodules:
     git submodule update
     # or in case you had an older version of this repo
     git submodule update --init
+    # or preferably
+    git pull --recurse-submodules
 ```
 
 Create a backup copy of your current cfg files:

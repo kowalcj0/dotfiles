@@ -25,6 +25,12 @@ set ruler
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_theme='wombat'
+" Enable the list of buffers
+"let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+
 
 " Make search case insensitive
 set ignorecase
@@ -51,6 +57,8 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set autochdir
 set tags+=./tags;
 
+" make undescore a word separator
+set iskeyword-=_
 
 " configure github username for the vim-github-comment
 let g:github_user = 'kowalcj0'
@@ -63,6 +71,8 @@ let g:github_comment_open_browser = 1
 set clipboard=unnamedplus
 set showmode
 
+" always show tabline
+set showtabline=2
 
 " Pathogen load
 " https://github.com/klen/python-mode#id6
@@ -98,7 +108,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 "color wombat256mod
-color miko
+"color miko
+color badwolf
 
 
 "SCALA syntax highlight script
@@ -198,10 +209,10 @@ let mapleader="\<Space>"
 
 
 " emacs like jumping to the begging and end of line using Ctrl+a and Ctrl+e
-imap <C-a> <C-o>^
+imap <C-q> <C-o>^
 imap <C-e> <C-o>$
 map <C-e> $
-map <C-a> ^
+map <C-q> ^
 
 
 " Navigate wrapped lines naturally
@@ -373,6 +384,11 @@ hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=
 map <Leader><Space> :noh<CR>;
 
 
+" open the current buffer in a new tab
+nmap tt :tabedit %<CR>
+" will open the current buffer in a new tab
+nmap tc :tabclose<CR>
+
 """""""""""""""""""""""" Search for word under cursor using * and # """""""""""
 " Search for the selection under the cursor using * or #
 " idea by Michael Naumann
@@ -409,6 +425,26 @@ vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
 """""""""""""""""""""""" Search for word under cursor using * and # """""""""""
 
+
+nnoremap <C-W>O :call MaximizeToggle()<CR>
+nnoremap <C-W>o :call MaximizeToggle()<CR>
+nnoremap <C-W><C-O> :call MaximizeToggle()<CR>
+
+function! MaximizeToggle()
+  if exists("s:maximize_session")
+    exec "source " . s:maximize_session
+    call delete(s:maximize_session)
+    unlet s:maximize_session
+    let &hidden=s:maximize_hidden_save
+    unlet s:maximize_hidden_save
+  else
+    let s:maximize_hidden_save = &hidden
+    let s:maximize_session = tempname()
+    set hidden
+    exec "mksession! " . s:maximize_session
+    only
+  endif
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " END OF Shortcuts
