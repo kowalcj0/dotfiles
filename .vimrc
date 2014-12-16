@@ -112,6 +112,7 @@ set t_Co=256
 "color wombat256mod
 "color miko
 color badwolf
+highlight Comment ctermfg=LightGray
 
 
 "SCALA syntax highlight script
@@ -510,8 +511,8 @@ nnoremap <silent><F6> :call <SID>ToggleColorColumn()<cr>
 " toggle colored right border after 80 chars
 set colorcolumn=80
 set tw=79       " width of document (used by gd)
-"set nowrap      " don't automatically wrap on load
-"set fo-=t       " don't automatically wrap text when typing
+set nowrap      " don't automatically wrap on load
+set fo-=t       " don't automatically wrap text when typing
 let s:color_column_old = 0
 function! s:ToggleColorColumn()
     if s:color_column_old == 0
