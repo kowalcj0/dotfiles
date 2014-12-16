@@ -40,8 +40,9 @@ Initialize all the submodules:
     git submodule init
     git submodule update
     # or in case you had an older version of this repo
+    git submodule foreach git pull --rebase origin master
+    # do not use
     git submodule update --init
-    # or preferably
     git pull --recurse-submodules
 ```
 
