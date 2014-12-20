@@ -30,7 +30,8 @@ let g:airline_theme='wombat'
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-
+" let terminal resize scale the internal windows
+autocmd VimResized * :wincmd =
 
 " Make search case insensitive
 set ignorecase
