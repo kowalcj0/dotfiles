@@ -26,7 +26,7 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_theme='wombat'
 " Enable the list of buffers
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
@@ -78,6 +78,8 @@ set showtabline=2
 " Pathogen load
 " https://github.com/klen/python-mode#id6
 filetype off
+" disable lint checks in 'python-mode'
+let g:pymode_lint_write = 0
 
 " Setup Pathogen to manage your plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
