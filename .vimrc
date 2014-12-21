@@ -113,7 +113,7 @@ set t_Co=256
 "color wombat256mod
 "color miko
 color badwolf
-highlight Comment ctermfg=LightGray
+highlight Comment ctermfg=LightBlue
 
 
 "SCALA syntax highlight script

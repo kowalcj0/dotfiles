@@ -3,26 +3,6 @@
 [[ $- == *i* ]] || return
 
 
-# enable Vi mode
-# Vi mode allows for the use of vi like commands when at the bash prompt.
-# When set to this mode initially you will be in insert mode
-# (be able to type at the prompt unlike when you enter vi).
-# Hitting the escape key takes you into command mode.
-# Commands to take advantage of bash's Vi Mode:
-# h   Move cursor left
-# l   Move cursor right
-# A   Move cursor to end of line and put in insert mode
-# 0   (zero) Move cursor to beginning of line (doesn't put in insert mode)
-# i   Put into insert mode at current position
-# a   Put into insert mode after current position
-# dd  Delete line (saved for pasting)
-# D   Delete text after current cursor position (saved for pasting)
-# p   Paste text that was deleted
-# j   Move up through history commands
-# k   Move down through history commands
-# u   Undo
-set -o vi
-
 ###############################################################################
 # 3rd party scripts
 ###############################################################################
@@ -72,7 +52,7 @@ alias ct="ctags --exclude=.git --exclude='*.log' --exclude='*.pyc' --exclude=.ro
 alias path='echo -e ${PATH//:/\\n}'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias s2u="rename 'y/ /_/' *" # replace spaces in filenames with underscores
-alias rs2u='for i in * ; do if [ -d "$i" ]; then cd "$i"; s2u; cd - ; fi; done' # recursive s2u
+alias rs2u=replacesSpacesRecursively  # recursive s2u
 alias types=findTypes
 alias sacd2flac='for f in *.dsf ; do dsf2flac -i "${f}" -o "${f}.flac" ; done;'
 alias tostereo=sacdiso2stereo
@@ -127,6 +107,13 @@ function sacdiso2stereo() {
 
 function sacdiso2multi() {
     sacd_extract -m -s -P --input="${1}"
+}
+
+function replacesSpacesRecursively() {
+    # replace spaces in dirs first
+    find -name "* *" -type d | rename 's/ /_/g'
+    # then in filenames
+    find -name "* *" -type f | rename 's/ /_/g'
 }
 
 # bash - disable interpreting <C-s> by the terminal
