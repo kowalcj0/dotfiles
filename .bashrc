@@ -101,6 +101,24 @@ function findTypes() {
     find . -type f -iname '*.*' | awk -F . '{print $NF}' | sort | uniq -c | sort
 }
 
+
+function allIso2Dsf() {
+    SCRIPT_PATH=`pwd`
+    for iso in $(find . -iname "*.iso")
+    do
+        folder=$(dirname ${iso})
+        file=$(basename ${iso})
+        cd "${folder}" && {
+            echo "Converting: ${file}";
+            sacd_extract -2 -s --input="${file}"
+            cd "${SCRIPT_PATH}";
+        } || {
+            echo "couldn't get into folder: ${folder}";
+        }
+    done
+}
+
+
 function sacdiso2stereo() {
     sacd_extract -2 -s -P --input="${1}"
 }
@@ -111,9 +129,10 @@ function sacdiso2multi() {
 
 function replacesSpacesRecursively() {
     # replace spaces in dirs first
-    find -name "* *" -type d | rename 's/ /_/g'
-    # then in filenames
-    find -name "* *" -type f | rename 's/ /_/g'
+    find -name "* *" -type d | rename 's/ /_/g' && {
+        # then in filenames
+        find -name "* *" -type f | rename 's/ /_/g';
+    }
 }
 
 # bash - disable interpreting <C-s> by the terminal
@@ -161,7 +180,7 @@ alias gi='git ls-files . --ignored --exclude-standard --others' #show all the ig
 alias gk='gitk --all' # view full version tree in gitk
 alias gl='git log -n ' # show a given number of commit comments, ex: gl 2
 alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" # a nice representation of the commit tree
-alias go='git log origin/master..master' # list commits not pushed to the origin
+#alias go='git log origin/master..master' # list commits not pushed to the origin
 alias gp='git show --pretty="format:" --name-only ' # pretty print of files changes in given commit, ex.: gp commitID
 alias gs='git status' # show the status
 
@@ -227,3 +246,8 @@ then
     export PATH="$HOME/.rbenv/bin:$PATH" # Add RVM to PATH for scripting
     eval "$(rbenv init -)" # enable shims and autocompletion
 fi
+
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export GOROOT=$GOPATH
+export PATH=$PATH:$GOPATH/bin
