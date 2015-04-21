@@ -65,13 +65,13 @@ Delete your old cfg files:
 
 Create new absolute symlinks for all dot files and .vim folder:
 ```bash
-    ln -sf ~/git/bash-that-vim/.bashrc ~/.bashrc
-    ln -sf ~/git/bash-that-vim/.vimrc ~/.vimrc
-    ln -sf ~/git/bash-that-vim/.inputrc ~/.inputrc
-    ln -sf ~/git/bash-that-vim/.vim ~/.vim
-    ln -sf ~/git/bash-that-vim/.profile ~/.profile
-    ln -sf ~/git/bash-that-vim/.iftoprc ~/.iftoprc
-    ln -sf ~/git/bash-that-vim/global_gitignore ~/.gitignore
+    ln -sf ~/git/dotfiles/.bashrc ~/.bashrc
+    ln -sf ~/git/dotfiles/.vimrc ~/.vimrc
+    ln -sf ~/git/dotfiles/.inputrc ~/.inputrc
+    ln -sf ~/git/dotfiles/.vim ~/.vim
+    ln -sf ~/git/dotfiles/.profile ~/.profile
+    ln -sf ~/git/dotfiles/.iftoprc ~/.iftoprc
+    ln -sf ~/git/dotfiles/global_gitignore ~/.gitignore
 ```
 This [answer](http://superuser.com/a/422477) on superuser.com to explains why 
 you need to create those absolute symlinks :)
