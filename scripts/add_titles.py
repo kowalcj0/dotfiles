@@ -14,6 +14,7 @@ def rename(old, new):
 
 def main():
     titles = load_titles("{}/titles".format(os.path.dirname(os.path.realpath(__file__))))
+    assert len(titles) == len(os.listdir(os.getcwd()))
     for idx, filename in enumerate(sorted(os.listdir(os.getcwd()))):
             name, ext = os.path.splitext(filename)
             rename(filename, "{}-{}{}".format(name, titles[idx].strip(), ext))

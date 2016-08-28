@@ -5,7 +5,7 @@
 # Define some variables
 AUTHOR="Janusz Kowalczyk"
 CONTACT="na100procentchyba+wordpress@gmail.com"
-COPYRIGHT="(c) Janusz Kowalczyk 2014. This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You may not use the material for commercial purposes. Yet, such a permission can be granted when requested from the author."
+COPYRIGHT="(c) Janusz Kowalczyk 2015. This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You may not use the material for commercial purposes. Yet, such a permission can be granted when requested from the author."
 
 
 # remove Adobe's custom lens profile name with orignal one
@@ -23,6 +23,7 @@ get_clean_lens_profile_name() {
 
 # use exiftool to modify meta-data
 write_exif_data_down() {
+    # -xmp-crs:*=  -> clears the xmp-crs Camera Raw Schema (history of editing)
     PICTURE="${1}"
     exiftool -overwrite_original \
              -Artist="${AUTHOR}" \
@@ -32,6 +33,7 @@ write_exif_data_down() {
              -Photoshop:All= \
              -Software= \
              -exif:SerialNumber=  \
+             -xmp-crs:*= \
              -xmp-crs:CameraProfile="Standard" \
              -xmp-crs:LensProfileName="${LENSPROFILENAME}" \
              -xmp-dc:Creator="${AUTHOR}" \
@@ -48,6 +50,7 @@ main() {
     for PICTURE in *.jpg ;
     do
         LENSPROFILENAME=$(get_clean_lens_profile_name "${PICTURE}")
+        echo "LENSPROFILENAME=${LENSPROFILENAME}"
         write_exif_data_down "${PICTURE}"
     done;
 }

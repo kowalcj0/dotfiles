@@ -81,6 +81,7 @@ alias pkgi='dpkg -s '      # nice info about the selected package
 alias pkg=findInstalledPackage; # find among installed packages
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
+alias untar='tar -zxvf' # untar tar.gz file
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() {
@@ -251,3 +252,6 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export GOROOT=$GOPATH
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:~/Apps/Android-studio/bin
+export ANDROID_HOME=~/Android/SDK/
+export PATH=$PATH:/home/jk/Apps/Node/node-v6.4.0-linux-x64/bin

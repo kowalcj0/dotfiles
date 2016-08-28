@@ -24,7 +24,7 @@ set ruler
 " setting for the vim-airline
 set laststatus=2
 let g:airline_powerline_fonts=1
-let g:airline_theme='wombat'
+let g:airline_theme='badwolf'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
