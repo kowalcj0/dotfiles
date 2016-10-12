@@ -61,11 +61,6 @@ set tags+=./tags;
 " make undescore a word separator
 set iskeyword-=_
 
-" configure github username for the vim-github-comment
-let g:github_user = 'kowalcj0'
-"Optionally, browser can be opened with your comment after you post it:
-let g:github_comment_open_browser = 1
-
 
 " Fix the issues with X11 clipboard
 " http://vim.wikia.com/wiki/Accessing_the_system_clipboard
@@ -114,6 +109,8 @@ set t_Co=256
 "color miko
 color badwolf
 highlight Comment ctermfg=LightBlue
+highlight Folded ctermbg=16
+highlight Folded ctermfg=100
 
 
 "SCALA syntax highlight script
@@ -250,8 +247,6 @@ endfunction
 
 
 " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-" Open CtrlP Buffer Explorer using leader + m
-nnoremap <leader>b :CtrlPBuffer<CR>
 " Type <Leader>o to open a new file:
 nnoremap <Leader>o :CtrlP<CR>
 " Type <Leader>w to save file (a lot faster than :w<Enter>):
@@ -298,15 +293,21 @@ vnoremap <silent> <Leader>u :call RangeUnCommentLine()<CR>
 
 
 " Open file explorer in a new Tab
-nnoremap <leader>E :Texplore<CR>
+nnoremap <leader>b :Texplore<CR>
 " Open file explorer in the same window or split
 nnoremap <leader>e :Explore<CR>
 
 
 " Move to the previous buffer
-nnoremap H :bprevious<CR>
+"set switchbuf=usetab,newtab
+"set switchbuf=usetab
+"nnoremap L :sbnext<CR>
+"nnoremap H :sbprevious<CR>
+"nnoremap H :bprevious<CR>
+nnoremap H :tabp<CR>
 " Move to the next buffer
-nnoremap L :bnext<CR>
+"nnoremap L :bnext<CR>
+nnoremap L :tabn<CR>
 " Replace H and L: H jump screen top, L screen down
 nnoremap zh H
 nnoremap zl L
@@ -525,6 +526,9 @@ function! s:ToggleColorColumn()
     endif
 endfunction
 
+
+" Press F7 to refresh the syntax highlighting
+nnoremap <silent> <F7> :syntax sync fromstart<CR>
 
 " Press F8 to toggle tag list
 nnoremap <silent> <F8> :TlistToggle<CR>
