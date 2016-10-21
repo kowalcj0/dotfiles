@@ -78,6 +78,7 @@ alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
 alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
+alias pkgd='aptitude why ' # find what depends on specified package
 alias pkg=findInstalledPackage; # find among installed packages
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
