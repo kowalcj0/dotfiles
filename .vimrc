@@ -264,6 +264,10 @@ vmap <Leader>P "+P
 nmap <Leader>s :set invspell spelllang=en<CR>
 
 
+" beautify JSON with Python, use <Leader>+j
+nmap <Leader>js :%!python -m json.tool<CR>
+
+
 " VIM Pytest
 " https://github.com/alfredodeza/pytest.vim
 nmap <silent><Leader>f <Esc>:Pytest function<CR>
