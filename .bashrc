@@ -250,5 +250,9 @@ source ${DIR}/prompt.sh
 
 source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
 
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
 export PATH=$PATH:~/Apps/Android-studio/bin
 export ANDROID_HOME=~/Android/SDK/
