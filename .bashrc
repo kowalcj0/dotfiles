@@ -27,8 +27,11 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # - current git branch
 # - "!" mark after branch name if code diverged from HEAD
 # - current version of ruby if rvm is used
-DIR="$(dirname $(readlink -m "$BASH_SOURCE"))"
-source ${DIR}/prompt.sh
+source ~/.bash-git-prompt/gitprompt.sh
+GIT_PROMPT_ONLY_IN_REPO=1
+
+#DIR="$(dirname $(readlink -m "$BASH_SOURCE"))"
+#source ${DIR}/prompt.sh
 
 ## =============================================================================
 ## handy aliases
@@ -83,6 +86,7 @@ alias pkg=findInstalledPackage; # find among installed packages
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 alias untar='tar -zxvf' # untar tar.gz file
+alias dps='docker ps -a' # show all running docker containers
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() {
@@ -247,6 +251,11 @@ if [[ -d $HOME/.rbenv ]]
 then
     export PATH="$HOME/.rbenv/bin:$PATH" # Add RVM to PATH for scripting
     eval "$(rbenv init -)" # enable shims and autocompletion
+fi
+
+if [[ -e $HOME/.git-completion.bash ]]
+then
+    source ~/.git-completion.bash
 fi
 
 export PATH=$PATH:/usr/local/go/bin
