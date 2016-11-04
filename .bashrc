@@ -20,18 +20,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# Load prompt (PS1) definition from prompt.sh
-# to do it, we need the real location of the .bashrc script
-# which in our case is inside this repo
-# this script will show:
-# - current git branch
-# - "!" mark after branch name if code diverged from HEAD
-# - current version of ruby if rvm is used
-source ~/.bash-git-prompt/gitprompt.sh
-GIT_PROMPT_ONLY_IN_REPO=1
-
-#DIR="$(dirname $(readlink -m "$BASH_SOURCE"))"
-#source ${DIR}/prompt.sh
 
 ## =============================================================================
 ## handy aliases
@@ -81,6 +69,7 @@ alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
 alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
+alias pkgd='aptitude why ' # find what depends on specified package
 alias pkg=findInstalledPackage; # find among installed packages
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
@@ -243,8 +232,6 @@ export PATH=$PATH:$HOME/bin
 # http://askubuntu.com/a/14891
 export TERM=xterm-256color
 
-source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
-
 #rbenv
 if [[ -d $HOME/.rbenv ]]
 then
@@ -252,15 +239,20 @@ then
     eval "$(rbenv init -)" # enable shims and autocompletion
 fi
 
-if [[ -e $HOME/.git-completion.bash ]]
-then
-    source ~/.git-completion.bash
-fi
+source ~/.git-prompt.sh
+source ~/.git-completion.bash
 
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export GOROOT=$GOPATH
-export PATH=$PATH:$GOPATH/bin
+GIT_PROMPT_ONLY_IN_REPO=1
+
+# set the PS1
+DIR="$(dirname $(readlink -m "$BASH_SOURCE"))"
+source ${DIR}/prompt.sh
+
+source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
+
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
 export PATH=$PATH:~/Apps/Android-studio/bin
 export ANDROID_HOME=~/Android/SDK/
-export PATH=$PATH:/home/jk/Apps/Node/node-v6.4.0-linux-x64/bin
