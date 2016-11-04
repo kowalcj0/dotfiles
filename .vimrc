@@ -20,6 +20,7 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set ruler
+set title
 
 " setting for the vim-airline
 set laststatus=2
@@ -374,6 +375,28 @@ noremap <leader>v :Vex!<CR>
 noremap <leader>n :vnew<CR>
 noremap <leader>t :Tex<CR>
 
+" vim-fugitive shortcuts
+nnoremap <Leader>g+ :silent Git stash pop<CR>:e<CR>
+nnoremap <Leader>g- :silent Git stash<CR>:e<CR>
+nnoremap <Leader>ga :Git add %:p<CR><CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gc :Gcommit -v -q<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gg :Ggrep<Space>
+nnoremap <Leader>gh :Glog<CR>
+nnoremap <Leader>gH :Glog<CR>:set nofoldenable<CR>
+nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git --no-pager log --oneline --all --decorate --graph -40'<CR>
+nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git log --oneline --all --decorate --graph'<CR>
+nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>go :Git checkout<Space>
+nnoremap <Leader>gp :Git push<CR>
+nnoremap <Leader>gpl :Dispatch! git pull<CR>
+nnoremap <Leader>gps :Dispatch! git push<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <Leader>gw :Gwrite<CR><CR>
 
 " yank a text, then use S to replace word and paste many times
 nnoremap S diw"0P
