@@ -85,7 +85,7 @@ alias pkg=findInstalledPackage; # find among installed packages
 alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 alias untar='tar -zxvf' # untar tar.gz file
-alias dps='docker ps -a' # show all running docker containers
+alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.CreatedAt}}\t{{.Image}}\t{{.Ports}}"' # show all running docker containers
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() {
@@ -200,7 +200,7 @@ function gitBranchDiffFile() {
 # g will search through more files
 # whereas gg will skip more files, like js, minified files and so on
 # Usage: g pattern
-function g() { find . -type f ! -iname "*.pyc" ! -iname ".git" ! -iname "*log*" ! -iname "tags" ! -iname ".ropeproject" -print0 | xargs -0 grep --colour=auto "${1}" ; }
+function g() { find . -type f ! -iname "*.pyc" ! -iname ".git" ! -iname "*log*" ! -iname "tags" ! -iname ".ropeproject" -print0 | xargs -0 grep -n --colour=auto "${1}" ; }
 function gg() { find . -type f ! -iname "*.pyc" ! -iname "*.js" ! -iname "*.css" ! -iname "*log*" ! -iname "*jquery*" ! -iname "*min*" ! -iname "*less*" ! -iname "*map*" ! -iname "*.json" ! -name "*.html" ! -iname "tags" ! -iname ".ropeproject" ! -path "*.git*" ! -path "*.kitchen*" ! -path "*.bundle*" ! -path git -print0 | xargs -0 grep --colour=auto "${1}" ; }
 
 # find all of the distinct file extensions in a folder
