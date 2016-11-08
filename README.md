@@ -72,6 +72,8 @@ Create new absolute symlinks for all dot files and .vim folder:
     ln -sf ~/git/dotfiles/.profile ~/.profile
     ln -sf ~/git/dotfiles/.iftoprc ~/.iftoprc
     ln -sf ~/git/dotfiles/global_gitignore ~/.gitignore
+    ln -sf ~/git/dotfiles/.git-prompt.sh ~/.git-prompt.sh
+    ln -sf ~/git/dotfiles/.git-completion.bash ~/.git-completion.bash
 ```
 This [answer](http://superuser.com/a/422477) on superuser.com to explains why 
 you need to create those absolute symlinks :)
