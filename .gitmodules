@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/vim-visual-increment"]
 	path = .vim/bundle/vim-visual-increment
 	url = https://github.com/triglav/vim-visual-increment.git
+[submodule ".vim/bundle/vim-pydocstring"]
+	path = .vim/bundle/vim-pydocstring
+	url = https://github.com/kowalcj0/vim-pydocstring.git
