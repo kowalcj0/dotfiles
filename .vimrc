@@ -87,11 +87,17 @@ syntax on
 
 
 " syntastic
-" this will allow you to jump between error using [l and ]l
+" will work with the syntax checkers, like pylint or flake8
+" this will allow you to jump between error using [c and ]c
 " https://github.com/scrooloose/syntastic/issues/341#issuecomment-22071333
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open=1 " run the syntax check on file open
-let g:syntastic_enable_signs=1
+let g:syntastic_check_on_open = 0 " run the syntax check on file open
+let g:syntastic_check_on_wq = 0 " run the syntax check on file save and quit
+let g:syntastic_enable_signs = 1 " place error indicator >>> in the status column
+let g:syntastic_enable_balloons = 0 " used in gVim
+let g:syntastic_enable_highlighting = 1 " underline the error
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0 " keep the error list closed
 
 
 " Trigger configuration. Do not use <tab> if you use
@@ -178,7 +184,13 @@ let g:ctrlp_show_hidden = 1
 
 
 "jedi - > copied from cliffxuan
+"let g:jedi#auto_initialization = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#use_tabs_not_buffers = 1
+" jedi slow in huge files
+" https://github.com/davidhalter/jedi/issues/34#issuecomment-9638459
+let g:jedi#show_call_signatures = 1
+let g:jedi#popup_on_dot = 1
 " no docstring window popup during completion
 autocmd FileType python setlocal completeopt-=preview
 
@@ -232,6 +244,9 @@ nnoremap { {zz
 " Y will yank from the cursor to the end of the line
 nnoremap Y y$
 
+
+" Press \v to select current line from the 1st non-blank char to the last one
+noremap \v v^o$
 
 " move to last change
 nnoremap <Leader>l `.
