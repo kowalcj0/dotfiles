@@ -85,3 +85,20 @@
 ##################################
 # End of xbindkeys configuration #
 ##################################
+
+# apt-get install xautomation xinput xbindkeys xdotool
+# CSL vertical mouse
+"/usr/bin/xdotool key --clearmodifiers XF86AudioPrev"
+b:8 + Release
+
+"/usr/bin/xdotool key --clearmodifiers XF86AudioNext"
+b:9 + Release
+
+"/usr/bin/xdotool key --clearmodifiers XF86AudioRaiseVolume"
+Shift + b:4
+
+"/usr/bin/xdotool key --clearmodifiers XF86AudioLowerVolume"
+Shift + b:5
+
+"/usr/bin/xdotool key --clearmodifiers XF86AudioPlay"
+Shift + b:2 + Release
