@@ -188,6 +188,7 @@ alias agi='sudo apt-get install ' # shortcut for installing apps
 alias agu='sudo apt-get update ' # shortcut for updating the repos
 alias agr='sudo apt-get remove --purge ' # shortcut for removing a package
 alias agc='sudo apt-get clean ' # to finish cleaning the env after deinstallation
+alias myip=`wget -qO- http://ipecho.net/plain && echo` # get public IP address
 alias pkgf=findPackageUsingAptAndDpkg; # search for a package using apt and dpkg
 alias pkgi='dpkg -s '      # nice info about the selected package
 alias pkgd='aptitude why ' # find what depends on specified package
@@ -196,6 +197,7 @@ alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 alias untar='tar -zxvf' # untar tar.gz file
 alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.CreatedAt}}\t{{.Image}}\t{{.Ports}}"' # show all running docker containers
+alias dev=dev;
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() {
@@ -250,6 +252,12 @@ function replacesSpacesRecursively() {
     }
 }
 
+function dev() {
+    h0
+    source ~/dev.sh
+    h1
+}
+
 # bash - disable interpreting <C-s> by the terminal
 # No ttyctl, so we need to save and then restore terminal settings
 stty -ixon
@@ -298,6 +306,7 @@ alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d
 #alias go='git log origin/master..master' # list commits not pushed to the origin
 alias gp='git show --pretty="format:" --name-only ' # pretty print of files changes in given commit, ex.: gp commitID
 alias gs='git status' # show the status
+alias gf='git checkout master && git pull && git fetch --prune && git branch -a'
 
 # $1 first branch
 # $2 second branch
@@ -353,13 +362,6 @@ export PATH=$PATH:$HOME/bin
 # http://askubuntu.com/a/14891
 export TERM=xterm-256color
 
-#rbenv
-if [[ -d $HOME/.rbenv ]]
-then
-    export PATH="$HOME/.rbenv/bin:$PATH" # Add RVM to PATH for scripting
-    eval "$(rbenv init -)" # enable shims and autocompletion
-fi
-
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
 
@@ -371,9 +373,3 @@ source ${DIR}/prompt.sh
 
 source $(which virtualenvwrapper.sh) # registers all virtualenv commands for u
 
-# Use bash-completion, if available
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
-
-export PATH=$PATH:~/Apps/Android-studio/bin
-export ANDROID_HOME=~/Android/SDK/
