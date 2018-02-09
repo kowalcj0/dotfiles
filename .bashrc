@@ -370,6 +370,7 @@ export JAVA_HOME=/usr
 #export EC2_CERT="~/.ec2/cert-****.pem"
 #export EC2_URL=https://ec2.amazonaws.com
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/usr/local/go/bin
 # set 256 color for terminator
 # http://vim.wikia.com/wiki/256_colors_setup_for_console_Vim#Terminal_recap
 # http://askubuntu.com/a/14891
