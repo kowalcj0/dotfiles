@@ -97,8 +97,16 @@ b:9 + Release
 "/usr/bin/xdotool key --clearmodifiers XF86AudioRaiseVolume"
 Shift + b:4
 
+"/usr/bin/xdotool key --clearmodifiers XF86AudioRaiseVolume"
+ m:0x1 + c:50
+ Shift + Shift_L
+
 "/usr/bin/xdotool key --clearmodifiers XF86AudioLowerVolume"
 Shift + b:5
+
+"/usr/bin/xdotool key --clearmodifiers XF86AudioLowerVolume"
+m:0x1 + c:50
+Shift + Shift_L
 
 "/usr/bin/xdotool key --clearmodifiers XF86AudioPlay"
 Shift + b:2 + Release
