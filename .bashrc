@@ -198,6 +198,8 @@ alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 alias untar='tar -zxvf' # untar tar.gz file
 alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.CreatedAt}}\t{{.Image}}\t{{.Ports}}"' # show all running docker containers
+alias dui='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")' # remove all untagged docker images
+alias dsr='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)' # stop and remove all docker containers
 alias dev=dev;
 
 # $1 - package name you want to find
