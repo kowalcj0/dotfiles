@@ -320,6 +320,7 @@ alias gll="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d
 alias gp='git show --pretty="format:" --name-only ' # pretty print of files changes in given commit, ex.: gp commitID
 alias gs='git status' # show the status
 alias gf='git checkout master && git pull && git fetch --prune && git branch -a'
+alias gsu='git submodule update --remote --merge' #  fetch the latest changes from upstream in each submodule, merge them in, and check out the latest revision of the submodule
 
 # $1 first branch
 # $2 second branch
