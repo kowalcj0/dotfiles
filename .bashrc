@@ -201,6 +201,8 @@ alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Cre
 alias dui='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")' # remove all untagged docker images
 alias dsr='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)' # stop and remove all docker containers
 alias dev=dev;
+alias sysinfo='inxi -Fxmz'
+alias httpserver='python3 -m http.server'
 
 # $1 - package name you want to find
 function findPackageUsingAptAndDpkg() {
