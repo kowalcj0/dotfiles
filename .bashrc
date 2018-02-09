@@ -155,6 +155,7 @@ alias h='history'
 alias j='jobs -l'
 function find_file() { find . -iname "*$@*"; }
 alias f=find_file
+alias hg='history | grep '  # grep history
 alias o='xdg-open'         # open selected file with an associated application
 alias which='type -a'
 alias scan='sudo clamscan -r / --bell --quiet --infected --exclude-dir=/sys --exclude-dir=/dev --exclude-dir=/proc --exclude=.vmdk --exclude=.flac --exclude=.nef'
