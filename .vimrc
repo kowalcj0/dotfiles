@@ -277,7 +277,9 @@ vmap <Leader>P "+P
 
 
 " enable built-in spell checker
-nmap <Leader>s :set invspell spelllang=en<CR>
+set spelllang=en_gb
+set spellfile=$HOME/git/moje/dotfiles/.vim/spell/en.utf-8.add
+nmap <Leader>s :set spell!<CR>
 
 
 " beautify JSON with Python, use <Leader>+j
