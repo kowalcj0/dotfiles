@@ -201,6 +201,7 @@ alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Cre
 alias dui='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")' # remove all untagged docker images
 alias dsr='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)' # stop and remove all docker containers
 alias dev=dev;
+alias langs=langs;
 alias sysinfo='inxi -Fxmz'
 alias httpserver='python3 -m http.server'
 
@@ -221,6 +222,13 @@ function findInstalledPackage() {
 
 function findTypes() {
     find . -type f -iname '*.*' | awk -F . '{print $NF}' | sort | uniq -c | sort
+}
+
+function langs() {
+    find . -type f -iname "*.mkv" -o -iname "*.avi" -o -iname "*.mp4" | sort | while read f
+    do
+        echo "$f"; mediainfo --Output="Audio;%Language%\n" "$f"
+    done
 }
 
 
