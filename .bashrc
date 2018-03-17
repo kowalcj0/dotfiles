@@ -147,6 +147,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ## =============================================================================
 alias alt='sudo update-alternatives --config ' # quickly change between installed version of an application
 alias ba='vim ~/.bashrc'   # edit bashrc file
+alias v='vim'
 alias vv='vim ~/.vimrc'    # edit vimrc file
 alias envi='env | sort'     # gives you sorted list of env variables
 alias du='du -kh'          # Makes a more readable output.
@@ -198,7 +199,7 @@ alias depyc='find . -name "*.pyc" -exec rm -rf {} \;' # delete all pyc files
 alias tafs='for f in *; do tar cjf "$f.bz2" "$f"; done' # tar and bz2 all directories into separate files
 alias untar='tar -zxvf' # untar tar.gz file
 alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.CreatedAt}}\t{{.Image}}\t{{.Ports}}"' # show all running docker containers
-alias dui='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")' # remove all untagged docker images
+alias dui='docker rmi $(docker images -a | grep "^<none>" | awk "{print $3}")' # remove all untagged docker images
 alias dsr='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)' # stop and remove all docker containers
 alias dev=dev;
 alias langs=langs;
