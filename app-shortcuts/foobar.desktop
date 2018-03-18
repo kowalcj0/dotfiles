@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Foobar2000
+Icon=/home/jk/Apps/foobar1.4/foobar2000-icon-16286.png
+Exec=wine "C:\users\jk\Apps\foobar1.4\foobar2000.exe"
+Comment=Foobar
+Categories=X-Wine;AudioVideo;Player;
+Terminal=false
+Name[en_GB]=Foobar
