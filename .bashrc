@@ -203,6 +203,7 @@ alias unrarall='\ls -t *.rar | parallel unrar x "{}" .'  # unrar all rar files i
 alias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.CreatedAt}}\t{{.Image}}\t{{.Ports}}"' # show all running docker containers
 alias dui='docker rmi $(docker images -a | grep "^<none>" | awk "{print $3}")' # remove all untagged docker images
 alias dsr='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)' # stop and remove all docker containers
+alias guiroot='xhost si:localuser:root' # allow apps run by root to access X server
 alias dev=dev;
 alias langs=langs;
 alias sysinfo='inxi -Fxmz'
